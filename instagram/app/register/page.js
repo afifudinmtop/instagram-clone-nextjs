@@ -26,7 +26,7 @@ const Page = () => {
       })
       .then((data) => {
         if (data.isLoggedIn) {
-          return (window.location.href = "/");
+          return (window.location.href = "/home/");
         }
       })
       .catch((error) => {

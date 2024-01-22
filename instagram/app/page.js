@@ -1,7 +1,6 @@
-export default function Home() {
-  return (
-    <div>
-      <div className="h1">halo</div>
-    </div>
-  );
+"use server";
+
+import { redirect } from "next/navigation";
+export default async function Home() {
+  redirect(`/home/`);
 }

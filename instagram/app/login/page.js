@@ -26,7 +26,7 @@ const Page = () => {
       })
       .then((data) => {
         if (data.isLoggedIn) {
-          return (window.location.href = "/");
+          return (window.location.href = "/home/");
         }
       })
       .catch((error) => {
@@ -60,7 +60,7 @@ const Page = () => {
       })
       .then((data) => {
         if (data.pesan == "sukses!") {
-          return (window.location.href = "/");
+          return (window.location.href = "/home/");
         }
 
         set_notif(data.pesan);
