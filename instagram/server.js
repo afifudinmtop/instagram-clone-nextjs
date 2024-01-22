@@ -7,8 +7,64 @@ const nextApp = next({ dev });
 const handle = nextApp.getRequestHandler();
 const port = 3000;
 
+const multer = require("multer");
+const sharp = require("sharp");
+const mysql = require("mysql");
+const { v4: uuidv4 } = require("uuid");
+const fs = require("fs");
+const cors = require("cors");
+const bcrypt = require("bcryptjs");
+
 nextApp.prepare().then(() => {
   const app = express();
+
+  app.use(express.urlencoded({ extended: true }));
+  app.use(express.json());
+  app.use(cors());
+
+  const uploadDir = "./public/uploads";
+
+  // delete file
+  const deleteFile = (filename) => {
+    try {
+      fs.unlinkSync(filename);
+      console.log(`File ${filename} berhasil dihapus.`);
+    } catch (err) {
+      console.error(`Error saat menghapus file ${filename}: ${err.message}`);
+    }
+  };
+
+  // rename file
+  const renameFile = (oldPath, newPath) => {
+    try {
+      fs.renameSync(oldPath, newPath);
+      console.log(`File has been renamed from ${oldPath} to ${newPath}`);
+    } catch (err) {
+      console.error(`Error occurred while renaming the file: ${err.message}`);
+    }
+  };
+
+  // Multer storage konfigurasi untuk menamai file sesuai UUID
+  const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, uploadDir);
+    },
+    filename: (req, file, cb) => {
+      const ext = file.mimetype.split("/")[1];
+      const filename = uuidv4() + "." + ext;
+      cb(null, filename);
+    },
+  });
+
+  const upload = multer({ storage: storage });
+
+  // Konfigurasi MySQL
+  const pool = mysql.createPool({
+    host: "localhost",
+    user: "admin",
+    password: "admin",
+    database: "instagram",
+  });
 
   // Konfigurasi express-session
   app.use(
@@ -20,9 +76,47 @@ nextApp.prepare().then(() => {
     })
   );
 
-  // API route
+  // API route test
   app.get("/api/hello", (req, res) => {
     res.json({ message: "Hello from Express!" });
+  });
+
+  // register
+  app.post("/api/register/", async (req, res) => {
+    try {
+      const username = req.body.username;
+      const password = req.body.password;
+      const hash = bcrypt.hashSync(password, 10);
+      const uuid = uuidv4();
+
+      // check existing username
+      pool.query(
+        "SELECT * FROM user WHERE username = ?",
+        [username],
+        (error, results, fields) => {
+          if (results.length > 0) {
+            res.json({ pesan: "username exist!" });
+          } else {
+            // Simpan data ke MySQL
+            pool.query(
+              "INSERT INTO user SET ?",
+              {
+                uuid: uuid,
+                password: hash,
+                username: username,
+              },
+              (error, results, fields) => {
+                if (error) throw error;
+                res.json({ pesan: "sukses!" });
+              }
+            );
+          }
+        }
+      );
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Server error");
+    }
   });
 
   // Rute Login

@@ -1,7 +1,48 @@
 "use client";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 
 const Register = () => {
+  const [username, set_username] = useState("");
+  const [password, set_password] = useState("");
+  const [notif, set_notif] = useState("");
+
+  const upload_data = () => {
+    if (username.length < 6) {
+      return set_notif("username min 6 character!");
+    }
+
+    if (password.length < 6) {
+      return set_notif("password min 6 character!");
+    }
+
+    fetch("/api/register/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, password }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            "Network response was not ok: " + response.statusText
+          );
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (data.pesan == "sukses!") {
+          return (window.location.href = "/login");
+        }
+
+        set_notif(data.pesan);
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
+      });
+  };
+
   return (
     <div className="w-80 mx-auto">
       {/* bahasa */}
@@ -18,11 +59,17 @@ const Register = () => {
         <img src="/logos_instagram.png" className="w-36 h-10" />
       </div>
 
+      {/* notif */}
+      <div className="text-center text-red-600 font-medium text-base">
+        {notif}
+      </div>
+
       {/* username */}
       <input
         type="text"
         className="p-3 mt-6 leading-10 w-full h-10 rounded border-[0.5px] border-[#C5C5C5] bg-[#EEE] text-black text-xs placeholder:text-[#848484] placeholder:text-xs placeholder:leading-10"
         placeholder="Phone number, email or username"
+        onChange={(e) => set_username(e.target.value)}
       />
 
       {/* password */}
@@ -30,10 +77,14 @@ const Register = () => {
         type="password"
         className="p-3 mt-3 leading-10 w-full h-10 rounded border-[0.5px] border-[#C5C5C5] bg-[#EEE] text-black text-xs placeholder:text-[#848484] placeholder:text-xs placeholder:leading-10"
         placeholder="Password"
+        onChange={(e) => set_password(e.target.value)}
       />
 
       {/* button log in */}
-      <div className="cursor-pointer mt-3 w-full h-10 rounded bg-[#1877F2] text-white text-xs text-center leading-10">
+      <div
+        onClick={upload_data}
+        className="cursor-pointer mt-3 w-full h-10 rounded bg-[#1877F2] text-white text-xs text-center leading-10"
+      >
         Sign Up
       </div>
 
