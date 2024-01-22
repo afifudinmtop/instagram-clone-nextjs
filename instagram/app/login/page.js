@@ -4,8 +4,17 @@ import Link from "next/link";
 const Login = () => {
   return (
     <div className="w-80 mx-auto">
+      {/* bahasa */}
+      <div className="flex justify-center mt-16">
+        <div className="text-[#868686] text-xs me-1">English</div>
+        <img
+          className="w-[5px] h-[3px] my-auto"
+          src="/login_register_arrow.png"
+        />
+      </div>
+
       {/* logo instagram */}
-      <div className="flex justify-center mt-[35vh]">
+      <div className="flex justify-center mt-40">
         <img src="/logos_instagram.png" className="w-36 h-10" />
       </div>
 
