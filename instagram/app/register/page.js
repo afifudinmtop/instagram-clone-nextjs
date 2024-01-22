@@ -1,11 +1,38 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const Register = () => {
+const Page = () => {
   const [username, set_username] = useState("");
   const [password, set_password] = useState("");
   const [notif, set_notif] = useState("");
+
+  useEffect(() => {
+    cek_login();
+  }, []);
+
+  const cek_login = () => {
+    fetch("/api/session_check", {
+      method: "GET",
+      cache: "no-store",
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            "Network response was not ok: " + response.statusText
+          );
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (data.isLoggedIn) {
+          return (window.location.href = "/");
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
+      });
+  };
 
   const upload_data = () => {
     if (username.length < 6) {
@@ -116,4 +143,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Page;
