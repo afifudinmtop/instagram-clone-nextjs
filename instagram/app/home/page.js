@@ -2,6 +2,7 @@
 import Home_header from "./Home_header";
 import Home_story from "./Home_story";
 import Home_feed from "./Home_feed";
+import Footer from "./Footer";
 
 import "./page.css";
 
@@ -37,10 +38,11 @@ const Page = () => {
   return (
     <div className="mt-5">
       <Home_header />
-      <div className="overflow-auto h-dvh">
+      <div className="overflow-auto h-dvh pb-[100px]">
         <Home_story />
         <Home_feed />
       </div>
+      <Footer />
     </div>
   );
 };

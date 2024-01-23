@@ -48,7 +48,7 @@ const Home_feed_components = (props) => {
       </div>
 
       {/* komen */}
-      <div className="text-sm text-[#8A8A8A] font-normal px-[12px] mt-[5px]">
+      <div className="text-sm text-[#8A8A8A] font-normal px-[12px] mt-[5px] mb-[15px]">
         View all {props.komen} comments
       </div>
     </div>
