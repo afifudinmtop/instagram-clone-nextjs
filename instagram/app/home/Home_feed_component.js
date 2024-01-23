@@ -17,7 +17,7 @@ const Home_feed_components = (props) => {
         </div>
 
         {/* atas kanan */}
-        <img src={"/titik3.png"} className="w-[3px] h-[12px] my-auto" />
+        <img src={"/more.png"} className="w-[20px] h-[20px] my-auto" />
       </div>
 
       {/* main image */}
@@ -36,9 +36,7 @@ const Home_feed_components = (props) => {
 
       {/* liked */}
       <div className="text-black text-sm px-[12px]">
-        <span className="font-normal">Liked by </span>
-        <span className="font-medium">fabrizio </span>
-        <span className="font-normal">and others</span>
+        <span className="font-medium">{props.likes} likes</span>
       </div>
 
       {/* caption */}

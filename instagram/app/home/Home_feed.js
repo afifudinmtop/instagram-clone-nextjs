@@ -9,6 +9,7 @@ const Home_feed = () => {
         gambar="x1.png"
         caption="kajndjandkajndka kajndkaw ajndwaknd kajndjandkajndka kajndkaw ajndwaknd"
         komen="103"
+        likes="99"
       />
 
       <Home_feed_components
@@ -17,6 +18,7 @@ const Home_feed = () => {
         gambar="x2.png"
         caption="kajndjandkajndka kajndkaw ajndwaknd kajndjandkajndka kajndkaw ajndwaknd"
         komen="813"
+        likes="55"
       />
 
       <Home_feed_components
@@ -25,6 +27,7 @@ const Home_feed = () => {
         gambar="x3.png"
         caption="kajndjandkajndka kajndkaw ajndwaknd kajndjandkajndka kajndkaw ajndwaknd"
         komen="545"
+        likes="21"
       />
     </div>
   );

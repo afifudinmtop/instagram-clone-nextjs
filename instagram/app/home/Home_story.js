@@ -18,26 +18,32 @@ const Home_story = () => {
           />
           <div className="absolute translate-x-[45px] translate-y-[40px] bg-[url('/AddStory.png')] w-[30px] h-[30px] rounded-full bg-contain bg-no-repeat"></div>
         </div>
+        <div className="text-center text-xs">Your story</div>
       </SwiperSlide>
 
       <SwiperSlide className="w-[auto!important]">
         <Home_story_component src="2.png" />
+        <div className="text-center text-xs">abdul</div>
       </SwiperSlide>
 
       <SwiperSlide className="w-[auto!important]">
         <Home_story_component src="3.png" />
+        <div className="text-center text-xs">joko</div>
       </SwiperSlide>
 
       <SwiperSlide className="w-[auto!important]">
         <Home_story_component src="4.png" />
+        <div className="text-center text-xs">slamet</div>
       </SwiperSlide>
 
       <SwiperSlide className="w-[auto!important]">
         <Home_story_component src="5.png" />
+        <div className="text-center text-xs">intan</div>
       </SwiperSlide>
 
       <SwiperSlide className="w-[auto!important]">
         <Home_story_component src="6.png" />
+        <div className="text-center text-xs">siti</div>
       </SwiperSlide>
     </Swiper>
   );
