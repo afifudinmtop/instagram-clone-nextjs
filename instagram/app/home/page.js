@@ -1,5 +1,6 @@
 "use client";
 import Home_header from "./Home_header";
+import Home_story from "./Home_story";
 import { useState, useEffect } from "react";
 
 const Page = () => {
@@ -32,6 +33,7 @@ const Page = () => {
   return (
     <div className="mt-5">
       <Home_header />
+      <Home_story />
     </div>
   );
 };
