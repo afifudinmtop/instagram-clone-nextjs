@@ -1,4 +1,5 @@
 import "./globals.css";
+import "./custom-scroll.css";
 
 export const metadata = {
   title: "Instagram Clone",

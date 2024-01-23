@@ -1,0 +1,26 @@
+/* This styles the scrollbar track */
+::-webkit-scrollbar {
+  width: 5px; /* or any thin width you prefer */
+  height: 5px; /* For horizontal scrollbars */
+}
+
+/* This styles the draggable scrolling handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+/* Changes the color on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* This styles the scrollbar corner */
+::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+/* Removing scrollbar buttons */
+::-webkit-scrollbar-button {
+  display: none;
+}
