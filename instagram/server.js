@@ -149,6 +149,64 @@ nextApp.prepare().then(() => {
     }
   });
 
+  // get feed
+  app.get("/api/feed/", async (req, res) => {
+    try {
+      const user_uuid = req.session.user.uuid;
+
+      // get data
+      pool.query(
+        "SELECT * FROM post WHERE user = ?",
+        [user_uuid],
+        (error, results, fields) => {
+          res.json(results);
+        }
+      );
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Server error");
+    }
+  });
+
+  // upload foto
+  app.post("/api/upload_gambar/", upload.single("gambar"), async (req, res) => {
+    try {
+      const caption = req.body.caption;
+      const file = req.file;
+      const resizedFilename = file.filename;
+
+      // Resize gambar
+      await sharp(file.path)
+        .resize(375, 375)
+        .toFile(`${uploadDir}/x-${resizedFilename}`);
+
+      deleteFile(`${uploadDir}/${resizedFilename}`);
+
+      renameFile(
+        `${uploadDir}/x-${resizedFilename}`,
+        `${uploadDir}/${resizedFilename}`
+      );
+
+      // Simpan data ke MySQL
+      pool.query(
+        "INSERT INTO post SET ?",
+        {
+          uuid: resizedFilename.split(".")[0],
+          gambar: resizedFilename,
+          caption: caption,
+          user: req.session.user.uuid,
+        },
+        (error, results, fields) => {
+          if (error) throw error;
+          return res.json({ pesan: "sukses!" });
+        }
+      );
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Server error");
+    }
+  });
+
   // Rute Logout
   app.get("/api/logout", (req, res) => {
     req.session.destroy(); // Menghapus sesi

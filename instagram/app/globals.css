@@ -7,3 +7,7 @@
 body {
   background-color: grey;
 }
+
+textarea {
+  resize: none;
+}

@@ -3,7 +3,6 @@ import Home_header from "./Home_header";
 import Home_story from "./Home_story";
 import Home_feed from "./Home_feed";
 import Footer from "./Footer";
-import Add_photo from "../components/Add_photo";
 
 import "./page.css";
 
@@ -36,7 +35,6 @@ const Page = () => {
         console.error("Error fetching data: ", error);
       });
   };
-
   return (
     <div className="mt-5">
       <Home_header />
@@ -45,8 +43,6 @@ const Page = () => {
         <Home_feed />
       </div>
       <Footer />
-
-      <Add_photo />
     </div>
   );
 };
