@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const Setting_photo = () => {
   return (
     <div>
@@ -5,9 +7,12 @@ const Setting_photo = () => {
         src="/avatar.png"
         className="h-[80px] w-[80px] rounded-full mt-[40px] mx-auto"
       />
-      <div className="mt-[24px] text-center text-[#1877F2] text-[17px]">
+      <Link
+        href="/setting/photo"
+        className="w-full flex justify-center mt-[24px] text-center text-[#1877F2] text-[17px]"
+      >
         Change profile photo
-      </div>
+      </Link>
     </div>
   );
 };
