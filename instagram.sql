@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 26, 2024 at 09:11 AM
+-- Generation Time: Jan 26, 2024 at 09:48 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -63,6 +63,7 @@ CREATE TABLE `user` (
   `uuid` text DEFAULT NULL,
   `name` text DEFAULT NULL,
   `username` text DEFAULT NULL,
+  `gambar` text DEFAULT NULL,
   `bio` text DEFAULT NULL,
   `password` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -71,8 +72,8 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `uuid`, `name`, `username`, `bio`, `password`) VALUES
-(1, '926dde59-7de7-493c-aed3-b4573247acf0', 'admin1', 'admin1', 'uhuy', '$2a$10$nNO84MT6EaTTQrdenXYPjuN9qfovD.VLCjRrGqyzbLYScN36FLV9G');
+INSERT INTO `user` (`id`, `uuid`, `name`, `username`, `gambar`, `bio`, `password`) VALUES
+(1, '926dde59-7de7-493c-aed3-b4573247acf0', 'admin1', 'admin1', '177788bb-76ce-40ae-8040-9ee8d189a1ee.jpeg', 'uhuy', '$2a$10$nNO84MT6EaTTQrdenXYPjuN9qfovD.VLCjRrGqyzbLYScN36FLV9G');
 
 --
 -- Indexes for dumped tables

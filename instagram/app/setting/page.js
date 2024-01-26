@@ -12,6 +12,7 @@ const Page = () => {
   const [name, set_name] = useState("");
   const [bio, set_bio] = useState("");
   const [username, set_username] = useState("");
+  const [gambar, set_gambar] = useState("/avatar.png");
 
   useEffect(() => {
     cek_login();
@@ -57,6 +58,7 @@ const Page = () => {
         set_name(data[0].name);
         set_bio(data[0].bio);
         set_username(data[0].username);
+        set_gambar(`/uploads/${data[0].gambar}`);
       })
       .catch((error) => {
         console.error("Error fetching data: ", error);
@@ -66,7 +68,7 @@ const Page = () => {
   return (
     <div className="mt-[20px] px-[16px]">
       <Setting_header />
-      <Setting_photo />
+      <Setting_photo gambar={gambar} />
       <Setting_field name={name} bio={bio} username={username} />
     </div>
   );

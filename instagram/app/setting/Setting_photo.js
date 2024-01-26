@@ -1,10 +1,10 @@
 import Link from "next/link";
 
-const Setting_photo = () => {
+const Setting_photo = (props) => {
   return (
     <div>
       <img
-        src="/avatar.png"
+        src={props.gambar}
         className="h-[80px] w-[80px] rounded-full mt-[40px] mx-auto"
       />
       <Link
