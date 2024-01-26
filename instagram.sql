@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 26, 2024 at 09:48 AM
+-- Generation Time: Jan 26, 2024 at 11:39 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -73,7 +73,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `uuid`, `name`, `username`, `gambar`, `bio`, `password`) VALUES
-(1, '926dde59-7de7-493c-aed3-b4573247acf0', 'admin1', 'admin1', '177788bb-76ce-40ae-8040-9ee8d189a1ee.jpeg', 'uhuy', '$2a$10$nNO84MT6EaTTQrdenXYPjuN9qfovD.VLCjRrGqyzbLYScN36FLV9G');
+(1, '926dde59-7de7-493c-aed3-b4573247acf0', 'Admin Ganteng', 'admin1', '177788bb-76ce-40ae-8040-9ee8d189a1ee.jpeg', 'uhuy', '$2a$10$nNO84MT6EaTTQrdenXYPjuN9qfovD.VLCjRrGqyzbLYScN36FLV9G');
 
 --
 -- Indexes for dumped tables

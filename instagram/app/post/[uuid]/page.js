@@ -58,6 +58,7 @@ const Page = ({ params }) => {
       })
       .then((data) => {
         setData(data);
+        console.log(data);
       })
       .catch((error) => {
         console.error("Error fetching data: ", error);
@@ -70,13 +71,14 @@ const Page = ({ params }) => {
 
       {data.map((item) => (
         <Post_feed_components
-          key={item.uuid}
-          avatar="1.png"
-          name="leo.messi"
-          gambar={item.gambar}
-          caption={item.caption}
-          komen="103"
-          likes="99"
+          key={item.post_uuid}
+          uuid={item.post_uuid}
+          avatar={item.user_gambar}
+          name={item.user_username}
+          gambar={item.post_gambar}
+          caption={item.post_caption}
+          user_uuid={item.user_uuid}
+          ts={item.post_ts}
         />
       ))}
 
