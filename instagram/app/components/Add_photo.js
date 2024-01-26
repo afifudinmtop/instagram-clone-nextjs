@@ -28,7 +28,7 @@ const Add_photo = () => {
       body: formData,
     })
       .then((response) => {
-        window.location.href = "/";
+        window.location.href = "/profil";
       })
       .catch((error) => {
         console.error("Error fetching data: ", error);

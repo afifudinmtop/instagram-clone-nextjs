@@ -3,10 +3,11 @@
 import Profil_header from "./Profil_header";
 import Profil_footer from "./Profil_footer";
 import Profil_info from "./Profil_info";
-import Profil_collection from "./Profil_collection";
+import Profil_feed from "./Profil_feed";
 import Profil_menu from "./Profil_menu";
 import Profil_button from "./Profil_button";
 import Profil_story from "./Profil_story";
+import Add_photo from "../components/Add_photo";
 
 import "./page.css";
 
@@ -46,39 +47,10 @@ const Page = () => {
       <Profil_button />
       <Profil_story />
       <Profil_menu />
-      <div className="overflow-auto h-dvh pb-[100px] flex flex-wrap mt-[7px] gap-[2px] justify-between">
-        <Profil_collection src="x1.png" />
-        <Profil_collection src="x2.png" />
-        <Profil_collection src="x3.png" />
-        <Profil_collection src="x4.png" />
-        <Profil_collection src="x5.png" />
-        <Profil_collection src="x6.png" />
-        <Profil_collection src="x7.png" />
-        <Profil_collection src="x8.png" />
-        <Profil_collection src="x9.png" />
-        <Profil_collection src="x10.png" />
-        <Profil_collection src="x11.png" />
-        <Profil_collection src="x12.png" />
-        <Profil_collection src="x13.png" />
-        <Profil_collection src="x14.png" />
-        <Profil_collection src="x15.png" />
-        <Profil_collection src="x1.png" />
-        <Profil_collection src="x2.png" />
-        <Profil_collection src="x3.png" />
-        <Profil_collection src="x4.png" />
-        <Profil_collection src="x5.png" />
-        <Profil_collection src="x6.png" />
-        <Profil_collection src="x7.png" />
-        <Profil_collection src="x8.png" />
-        <Profil_collection src="x9.png" />
-        <Profil_collection src="x10.png" />
-        <Profil_collection src="x11.png" />
-        <Profil_collection src="x12.png" />
-        <Profil_collection src="x13.png" />
-        <Profil_collection src="x14.png" />
-        <Profil_collection src="x15.png" />
-      </div>
+      <Profil_feed />
       <Profil_footer />
+
+      <Add_photo />
     </div>
   );
 };

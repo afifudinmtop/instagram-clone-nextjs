@@ -168,6 +168,44 @@ nextApp.prepare().then(() => {
     }
   });
 
+  // get profil feed
+  app.get("/api/profil_feed/", async (req, res) => {
+    try {
+      const user_uuid = req.session.user.uuid;
+
+      // get data
+      pool.query(
+        "SELECT * FROM post WHERE user = ?",
+        [user_uuid],
+        (error, results, fields) => {
+          res.json(results);
+        }
+      );
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Server error");
+    }
+  });
+
+  // get post
+  app.post("/api/post/", async (req, res) => {
+    try {
+      const uuid = req.body.uuid;
+
+      // get data
+      pool.query(
+        "SELECT * FROM post WHERE uuid = ?",
+        [uuid],
+        (error, results, fields) => {
+          res.json(results);
+        }
+      );
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Server error");
+    }
+  });
+
   // upload foto
   app.post("/api/upload_gambar/", upload.single("gambar"), async (req, res) => {
     try {
