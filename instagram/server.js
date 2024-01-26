@@ -206,6 +206,44 @@ nextApp.prepare().then(() => {
     }
   });
 
+  // get_profil
+  app.get("/api/get_profil/", async (req, res) => {
+    try {
+      const user_uuid = req.session.user.uuid;
+
+      pool.query(
+        "SELECT * FROM user WHERE uuid = ?",
+        [user_uuid],
+        (error, results, fields) => {
+          return res.json(results);
+        }
+      );
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Server error");
+    }
+  });
+
+  // get post
+  app.post("/api/update_name/", async (req, res) => {
+    try {
+      const name = req.body.name;
+      const user_uuid = req.session.user.uuid;
+
+      // get data
+      pool.query(
+        "UPDATE user SET name = ? WHERE uuid = ?",
+        [name, user_uuid],
+        (error, results, fields) => {
+          return res.json({ pesan: "sukses!" });
+        }
+      );
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Server error");
+    }
+  });
+
   // upload foto
   app.post("/api/upload_gambar/", upload.single("gambar"), async (req, res) => {
     try {
