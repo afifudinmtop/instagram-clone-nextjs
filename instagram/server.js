@@ -264,6 +264,40 @@ nextApp.prepare().then(() => {
     }
   });
 
+  // update_username
+  app.post("/api/update_username/", async (req, res) => {
+    try {
+      const username = req.body.username;
+      const user_uuid = req.session.user.uuid;
+
+      // check existing username
+      pool.query(
+        "SELECT * FROM user WHERE username = ?",
+        [username],
+        (error, results, fields) => {
+          // update data
+          if (results.length < 1) {
+            pool.query(
+              "UPDATE user SET username = ? WHERE uuid = ?",
+              [username, user_uuid],
+              (error, results, fields) => {
+                return res.json({ pesan: "sukses!" });
+              }
+            );
+          }
+
+          // kalau ada
+          else {
+            return res.json({ pesan: "username exist!" });
+          }
+        }
+      );
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Server error");
+    }
+  });
+
   // upload foto
   app.post("/api/upload_gambar/", upload.single("gambar"), async (req, res) => {
     try {
