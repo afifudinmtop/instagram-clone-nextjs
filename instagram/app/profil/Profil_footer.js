@@ -12,10 +12,12 @@ const Profil_footer = () => {
       </Link>
 
       {/* explore */}
-      <img
-        src="/explore.png"
-        className="w-[22px] h-[22px] cursor-pointer max-w-[none]"
-      />
+      <Link href="/explore">
+        <img
+          src="/explore.png"
+          className="w-[22px] h-[22px] cursor-pointer max-w-[none]"
+        />
+      </Link>
 
       {/* add */}
       <img

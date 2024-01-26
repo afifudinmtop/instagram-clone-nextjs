@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const Profil_header = () => {
+const Profil_header = (props) => {
   return (
     <div className="flex justify-between ms-[20px] me-[25px]">
       <div className="flex my-auto">
@@ -12,7 +12,7 @@ const Profil_header = () => {
         </Link>
 
         <div className="text-xl font-bold text-black mb-[5px] me-[5px]">
-          messi.official
+          {props.username}
         </div>
       </div>
 

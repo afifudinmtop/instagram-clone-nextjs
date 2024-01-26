@@ -1,8 +1,8 @@
-const Profil_info = () => {
+const Profil_info = (props) => {
   return (
     <div className="mx-[16px] mt-[23px]">
       <div className="flex justify-between">
-        <img src="/uploads/7.png" className="w-[89px] h-[89px] rounded-full" />
+        <img src={props.gambar} className="w-[89px] h-[89px] rounded-full" />
         <div className="flex gap-[35px] text-center my-auto">
           <div>
             <div className="text-[17px] font-medium">1,132</div>
@@ -19,8 +19,8 @@ const Profil_info = () => {
         </div>
       </div>
 
-      <div className="font-bold text-sm mt-1">Fabrizio Romano</div>
-      <div className="text-sm">A journalist</div>
+      <div className="font-bold text-sm mt-1">{props.name}</div>
+      <div className="text-sm">{props.bio}</div>
     </div>
   );
 };
