@@ -35,13 +35,14 @@ const Home_feed = () => {
     <div>
       {data.map((item) => (
         <Home_feed_components
-          key={item.uuid}
-          avatar="1.png"
-          name="leo.messi"
-          gambar={item.gambar}
-          caption={item.caption}
-          komen="0"
-          likes="0"
+          key={item.post_uuid}
+          uuid={item.post_uuid}
+          avatar={item.user_gambar}
+          name={item.user_username}
+          gambar={item.post_gambar}
+          caption={item.post_caption}
+          user_uuid={item.user_uuid}
+          ts={item.post_ts}
         />
       ))}
     </div>

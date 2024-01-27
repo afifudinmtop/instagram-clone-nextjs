@@ -1,4 +1,34 @@
+"use client";
+import Link from "next/link";
+
 const Home_feed_components = (props) => {
+  const timeAgo = (timestamp) => {
+    const now = new Date();
+    const past = new Date(timestamp);
+    const msPerMinute = 60 * 1000;
+    const msPerHour = msPerMinute * 60;
+    const msPerDay = msPerHour * 24;
+    const elapsed = now - past;
+
+    if (elapsed < msPerMinute) {
+      return Math.round(elapsed / 1000) + " seconds ago";
+    } else if (elapsed < msPerHour) {
+      return Math.round(elapsed / msPerMinute) + " minutes ago";
+    } else if (elapsed < msPerDay) {
+      return Math.round(elapsed / msPerHour) + " hours ago";
+    } else if (elapsed < msPerDay * 7) {
+      return Math.round(elapsed / msPerDay) + " days ago";
+    } else {
+      return (
+        past.getDate() +
+        " " +
+        past.toLocaleString("default", { month: "long" }) +
+        " " +
+        past.getFullYear()
+      );
+    }
+  };
+
   return (
     <div>
       <hr className="bg-[#E0E0E0] h-[1px] my-[10px]" />
@@ -6,15 +36,15 @@ const Home_feed_components = (props) => {
       {/* header */}
       <div className="flex justify-between ps-[18px] pe-[25px] mb-[10px]">
         {/* atas kiri */}
-        <div className="flex">
+        <Link href={"/user/" + props.user_uuid} className="flex">
           <img
             src={"/uploads/" + props.avatar}
-            className="w-[37px] h-[37px] me-[6px]"
+            className="w-[37px] h-[37px] me-[6px] rounded-full"
           />
           <div className="text-black font-medium my-auto text-sm">
             {props.name}
           </div>
-        </div>
+        </Link>
 
         {/* atas kanan */}
         <img src={"/more.png"} className="w-[20px] h-[20px] my-auto" />
@@ -35,19 +65,32 @@ const Home_feed_components = (props) => {
       </div>
 
       {/* liked */}
-      <div className="text-black text-sm px-[12px]">
-        <span className="font-medium">{props.likes} likes</span>
-      </div>
+      <Link
+        href={"/likes/" + props.uuid}
+        className="text-black text-sm px-[12px]"
+      >
+        <span className="font-medium">view likes</span>
+      </Link>
 
       {/* caption */}
       <div className="mt-[5px] text-black text-sm px-[12px]">
-        <span className="font-medium">{props.name} </span>
+        <Link className="font-medium" href={"/user/" + props.user_uuid}>
+          {props.name}{" "}
+        </Link>
         <span className="font-normal">{props.caption}</span>
       </div>
 
       {/* komen */}
-      <div className="text-sm text-[#8A8A8A] font-normal px-[12px] mt-[5px] mb-[15px]">
-        View all {props.komen} comments
+      <Link
+        href={"/comments/" + props.uuid}
+        className="text-sm text-[#8A8A8A] font-normal px-[12px] mt-[5px] mb-[15px]"
+      >
+        View all comments
+      </Link>
+
+      {/* timestamp */}
+      <div className="text-[10px] text-[#8A8A8A] font-normal px-[12px] mt-[5px] mb-[15px]">
+        {timeAgo(props.ts)}
       </div>
     </div>
   );

@@ -157,7 +157,20 @@ nextApp.prepare().then(() => {
 
       // get data
       pool.query(
-        "SELECT * FROM post WHERE user = ?",
+        `SELECT 
+        post.uuid AS post_uuid, 
+        post.gambar AS post_gambar, 
+        post.caption AS post_caption, 
+        post.ts AS post_ts, 
+        user.uuid AS user_uuid, 
+        user.username AS user_username, 
+        user.gambar AS user_gambar 
+        
+        FROM post 
+        JOIN follow ON post.user = follow.user2 
+        JOIN user ON post.user = user.uuid 
+        WHERE follow.user1 = ? 
+        ORDER BY RAND();`,
         [user_uuid],
         (error, results, fields) => {
           res.json(results);
