@@ -255,12 +255,13 @@ nextApp.prepare().then(() => {
   // get user search
   app.post("/api/search/", async (req, res) => {
     const searchValue = `%${req.body.searchValue}%`;
+    const user_uuid = req.session.user.uuid;
 
     try {
       // get data
       pool.query(
-        `SELECT * FROM user WHERE name LIKE ? OR username LIKE ? LIMIT 6;`,
-        [searchValue, searchValue],
+        `SELECT * FROM user WHERE (name LIKE ? OR username LIKE ?) AND uuid != ? LIMIT 6;`,
+        [searchValue, searchValue, user_uuid],
         (error, results, fields) => {
           res.json(results);
         }
