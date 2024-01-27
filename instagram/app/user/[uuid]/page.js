@@ -20,6 +20,7 @@ const Page = ({ params }) => {
   const [name, set_name] = useState("");
   const [bio, set_bio] = useState("");
   const [username, set_username] = useState("");
+  const [uuid, set_uuid] = useState("");
 
   const [jumlah_post, set_jumlah_post] = useState(0);
   const [follower, set_follower] = useState(0);
@@ -74,6 +75,7 @@ const Page = ({ params }) => {
         set_name(data[0].name);
         set_bio(data[0].bio);
         set_username(data[0].username);
+        set_uuid(data[0].uuid);
         set_gambar(`/uploads/${data[0].gambar}`);
       })
       .catch((error) => {
@@ -111,6 +113,7 @@ const Page = ({ params }) => {
     <div className="mt-[8px]">
       <Profil_header username={username} />
       <Profil_info
+        uuid={uuid}
         jumlah_post={jumlah_post}
         follower={follower}
         following={following}

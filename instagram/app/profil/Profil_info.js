@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const Profil_info = (props) => {
   return (
     <div className="mx-[16px] mt-[23px]">
@@ -8,14 +10,16 @@ const Profil_info = (props) => {
             <div className="text-[17px] font-medium">{props.jumlah_post}</div>
             <div className="text-[12px]">Posts</div>
           </div>
-          <div>
+
+          <Link href={"/follower/" + props.uuid}>
             <div className="text-[17px] font-medium">{props.follower}</div>
             <div className="text-[12px]">Followers</div>
-          </div>
-          <div>
+          </Link>
+
+          <Link href={"/following/" + props.uuid}>
             <div className="text-[17px] font-medium">{props.following}</div>
             <div className="text-[12px]">Following</div>
-          </div>
+          </Link>
         </div>
       </div>
 
