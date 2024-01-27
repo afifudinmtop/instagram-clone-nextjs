@@ -222,10 +222,13 @@ nextApp.prepare().then(() => {
 
   // get all post
   app.get("/api/explore/", async (req, res) => {
+    const user_uuid = req.session.user.uuid;
+
     try {
       // get data
       pool.query(
-        `SELECT * FROM post ORDER BY RAND() LIMIT 100;`,
+        `SELECT * FROM post WHERE user != ? ORDER BY RAND() LIMIT 100;`,
+        [user_uuid],
         (error, results, fields) => {
           res.json(results);
         }
