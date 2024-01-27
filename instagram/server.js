@@ -104,6 +104,7 @@ nextApp.prepare().then(() => {
                 uuid: uuid,
                 password: hash,
                 username: username,
+                gambar: "avatar.png",
               },
               (error, results, fields) => {
                 if (error) throw error;
