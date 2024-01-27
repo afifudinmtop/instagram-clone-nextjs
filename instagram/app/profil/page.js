@@ -19,9 +19,14 @@ const Page = () => {
   const [bio, set_bio] = useState("");
   const [username, set_username] = useState("");
 
+  const [jumlah_post, set_jumlah_post] = useState(0);
+  const [follower, set_follower] = useState(0);
+  const [following, set_following] = useState(0);
+
   useEffect(() => {
     cek_login();
     get_profil();
+    get_stats();
   }, []);
 
   const cek_login = () => {
@@ -70,10 +75,43 @@ const Page = () => {
       });
   };
 
+  const get_stats = () => {
+    fetch("/api/get_stats/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ user_uuid: "mine" }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            "Network response was not ok: " + response.statusText
+          );
+        }
+        return response.json();
+      })
+      .then((data) => {
+        set_jumlah_post(data.jumlah_post);
+        set_follower(data.follower);
+        set_following(data.following);
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
+      });
+  };
+
   return (
     <div className="mt-[8px]">
       <Profil_header username={username} />
-      <Profil_info gambar={gambar} name={name} bio={bio} />
+      <Profil_info
+        jumlah_post={jumlah_post}
+        follower={follower}
+        following={following}
+        gambar={gambar}
+        name={name}
+        bio={bio}
+      />
       <Profil_button />
       <Profil_story />
       <Profil_menu />

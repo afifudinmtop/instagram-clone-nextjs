@@ -5,15 +5,15 @@ const Profil_info = (props) => {
         <img src={props.gambar} className="w-[89px] h-[89px] rounded-full" />
         <div className="flex gap-[35px] text-center my-auto">
           <div>
-            <div className="text-[17px] font-medium">1,132</div>
+            <div className="text-[17px] font-medium">{props.jumlah_post}</div>
             <div className="text-[12px]">Posts</div>
           </div>
           <div>
-            <div className="text-[17px] font-medium">60K</div>
+            <div className="text-[17px] font-medium">{props.follower}</div>
             <div className="text-[12px]">Followers</div>
           </div>
           <div>
-            <div className="text-[17px] font-medium">4</div>
+            <div className="text-[17px] font-medium">{props.following}</div>
             <div className="text-[12px]">Following</div>
           </div>
         </div>

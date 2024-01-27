@@ -20,6 +20,7 @@ const Page = ({ params }) => {
   const [name, set_name] = useState("");
   const [bio, set_bio] = useState("");
   const [username, set_username] = useState("");
+
   const [jumlah_post, set_jumlah_post] = useState(0);
   const [follower, set_follower] = useState(0);
   const [following, set_following] = useState(0);

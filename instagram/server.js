@@ -416,7 +416,12 @@ nextApp.prepare().then(() => {
   // get_stats
   app.post("/api/get_stats/", async (req, res) => {
     try {
-      const user = req.body.user_uuid;
+      let user;
+      if (req.body.user_uuid == "mine") {
+        user = req.session.user.uuid;
+      } else {
+        user = req.body.user_uuid;
+      }
 
       let jumlah_post = 0;
       let follower = 0;
