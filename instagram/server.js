@@ -219,6 +219,41 @@ nextApp.prepare().then(() => {
     }
   });
 
+  // get all post
+  app.get("/api/explore/", async (req, res) => {
+    try {
+      // get data
+      pool.query(
+        `SELECT * FROM post ORDER BY RAND() LIMIT 100;`,
+        (error, results, fields) => {
+          res.json(results);
+        }
+      );
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Server error");
+    }
+  });
+
+  // get user search
+  app.post("/api/search/", async (req, res) => {
+    const searchValue = `%${req.body.searchValue}%`;
+
+    try {
+      // get data
+      pool.query(
+        `SELECT * FROM user WHERE name LIKE ? OR username LIKE ? LIMIT 6;`,
+        [searchValue, searchValue],
+        (error, results, fields) => {
+          res.json(results);
+        }
+      );
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Server error");
+    }
+  });
+
   // get_profil
   app.get("/api/get_profil/", async (req, res) => {
     try {
