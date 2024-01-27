@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 const Add_photo = () => {
   const [gambar_url, set_gambar_url] = useState("");
@@ -66,10 +67,12 @@ const Add_photo = () => {
 
       {/* head */}
       <div className="flex mt-2 mb-4">
-        <img
-          src="/arrow_left.png"
-          className="w-[10px] h-[20px] my-auto me-[15px]"
-        />
+        <Link href="/">
+          <img
+            src="/arrow_left.png"
+            className="w-[10px] h-[20px] my-auto me-[15px]"
+          />
+        </Link>
 
         <div className="text-xl font-bold text-black my-auto">New Post</div>
       </div>

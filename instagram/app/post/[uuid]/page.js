@@ -3,6 +3,7 @@
 import Post_header from "./Post_header";
 import Post_footer from "./Post_footer";
 import Post_feed_components from "./Post_feed_component";
+import Add_photo from "../../components/Add_photo";
 
 import "./page.css";
 
@@ -83,6 +84,8 @@ const Page = ({ params }) => {
       ))}
 
       <Post_footer />
+
+      <Add_photo />
     </div>
   );
 };

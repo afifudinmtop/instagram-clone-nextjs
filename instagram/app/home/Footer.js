@@ -4,7 +4,6 @@ import Link from "next/link";
 const Footer = () => {
   return (
     <div className="w-[375px] flex justify-center py-[14px] px-[25px] gap-[55px] fixed bottom-0 left-1/2 -translate-x-1/2 bg-white">
-      {/* home */}
       <Link href="/home">
         <img
           src="/home.png"
@@ -13,10 +12,12 @@ const Footer = () => {
       </Link>
 
       {/* explore */}
-      <img
-        src="/explore.png"
-        className="w-[22px] h-[22px] cursor-pointer max-w-[none]"
-      />
+      <Link href="/explore">
+        <img
+          src="/explore.png"
+          className="w-[22px] h-[22px] cursor-pointer max-w-[none]"
+        />
+      </Link>
 
       {/* add */}
       <img
