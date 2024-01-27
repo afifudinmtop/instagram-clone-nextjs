@@ -425,7 +425,7 @@ nextApp.prepare().then(() => {
   // Rute Logout
   app.get("/api/logout", (req, res) => {
     req.session.destroy(); // Menghapus sesi
-    res.send("Anda telah logout");
+    res.redirect("/login");
   });
 
   // Rute untuk memeriksa status sesi
