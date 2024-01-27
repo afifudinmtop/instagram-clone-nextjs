@@ -276,6 +276,42 @@ nextApp.prepare().then(() => {
     }
   });
 
+  // get_user
+  app.post("/api/get_user/", async (req, res) => {
+    try {
+      const user_uuid = req.body.user_uuid;
+
+      pool.query(
+        "SELECT * FROM user WHERE uuid = ?",
+        [user_uuid],
+        (error, results, fields) => {
+          return res.json(results);
+        }
+      );
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Server error");
+    }
+  });
+
+  // user_feed
+  app.post("/api/user_feed/", async (req, res) => {
+    try {
+      const user_uuid = req.body.user_uuid;
+
+      pool.query(
+        "SELECT * FROM post WHERE user = ? ORDER BY id DESC",
+        [user_uuid],
+        (error, results, fields) => {
+          return res.json(results);
+        }
+      );
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Server error");
+    }
+  });
+
   // update_name
   app.post("/api/update_name/", async (req, res) => {
     try {
@@ -342,6 +378,121 @@ nextApp.prepare().then(() => {
           else {
             return res.json({ pesan: "username exist!" });
           }
+        }
+      );
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Server error");
+    }
+  });
+
+  // cek_follow
+  app.post("/api/cek_follow/", async (req, res) => {
+    try {
+      const user1 = req.session.user.uuid;
+      const user2 = req.body.user_uuid;
+
+      // check existing relationship
+      pool.query(
+        "SELECT * FROM follow WHERE user1 = ? AND user2 = ?",
+        [user1, user2],
+        (error, results, fields) => {
+          if (results.length < 1) {
+            return res.json({ pesan: "belum follow" });
+          }
+
+          // kalau ada
+          else {
+            return res.json({ pesan: "follow" });
+          }
+        }
+      );
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Server error");
+    }
+  });
+
+  // get_stats
+  app.post("/api/get_stats/", async (req, res) => {
+    try {
+      const user = req.body.user_uuid;
+
+      let jumlah_post = 0;
+      let follower = 0;
+      let following = 0;
+
+      // get jumlah_post
+      pool.query(
+        "SELECT COUNT(*) AS jumlah_post FROM post WHERE user = ?",
+        [user],
+        (error, results, fields) => {
+          jumlah_post = results[0].jumlah_post;
+
+          // get following
+          pool.query(
+            "SELECT COUNT(*) AS following FROM follow WHERE user1 = ?",
+            [user],
+            (error, results, fields) => {
+              following = results[0].following;
+
+              // get follower
+              pool.query(
+                "SELECT COUNT(*) AS follower FROM follow WHERE user2 = ?",
+                [user],
+                (error, results, fields) => {
+                  follower = results[0].follower;
+
+                  return res.json({ jumlah_post, follower, following });
+                }
+              );
+            }
+          );
+        }
+      );
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Server error");
+    }
+  });
+
+  // go_follow
+  app.post("/api/go_follow/", async (req, res) => {
+    try {
+      const user2 = req.body.user_uuid;
+      const user1 = req.session.user.uuid;
+
+      // insert
+      pool.query(
+        "INSERT INTO follow SET ?",
+        {
+          user1: user1,
+          user2: user2,
+        },
+        (error, results, fields) => {
+          if (error) throw error;
+          res.json({ pesan: "sukses!" });
+        }
+      );
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Server error");
+    }
+  });
+
+  // go_unfollow
+  app.post("/api/go_unfollow/", async (req, res) => {
+    try {
+      const user1 = req.session.user.uuid;
+      const user2 = req.body.user_uuid;
+
+      // insert
+      pool.query(
+        "DELETE FROM follow WHERE user1 = ? AND user2 = ?",
+        [user1, user2],
+        (error, results, fields) => {
+          if (error) throw error;
+          res.json({ pesan: "sukses!" });
         }
       );
     } catch (error) {
