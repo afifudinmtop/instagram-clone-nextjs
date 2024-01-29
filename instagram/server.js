@@ -157,21 +157,24 @@ nextApp.prepare().then(() => {
 
       // get data
       pool.query(
-        `SELECT 
-        post.uuid AS post_uuid, 
-        post.gambar AS post_gambar, 
-        post.caption AS post_caption, 
-        post.ts AS post_ts, 
-        user.uuid AS user_uuid, 
-        user.username AS user_username, 
-        user.gambar AS user_gambar 
-        
+        `
+        SELECT 
+            post.uuid AS post_uuid, 
+            post.gambar AS post_gambar, 
+            post.caption AS post_caption, 
+            post.ts AS post_ts, 
+            user.uuid AS user_uuid, 
+            user.username AS user_username, 
+            user.gambar AS user_gambar, 
+            IF(likes.id IS NOT NULL, 'yes', 'no') AS likes 
         FROM post 
         JOIN follow ON post.user = follow.user2 
         JOIN user ON post.user = user.uuid 
+        LEFT JOIN likes ON post.uuid = likes.post AND likes.user = ? 
         WHERE follow.user1 = ? 
-        ORDER BY RAND();`,
-        [user_uuid],
+        ORDER BY RAND();
+        `,
+        [user_uuid, user_uuid],
         (error, results, fields) => {
           res.json(results);
         }
@@ -553,6 +556,51 @@ nextApp.prepare().then(() => {
       pool.query(
         "DELETE FROM follow WHERE user1 = ? AND user2 = ?",
         [user1, user2],
+        (error, results, fields) => {
+          if (error) throw error;
+          res.json({ pesan: "sukses!" });
+        }
+      );
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Server error");
+    }
+  });
+
+  // go_like
+  app.post("/api/go_like/", async (req, res) => {
+    try {
+      const user = req.body.user_uuid;
+      const post = req.body.post_uuid;
+
+      // insert
+      pool.query(
+        "INSERT INTO likes SET ?",
+        {
+          user: user,
+          post: post,
+        },
+        (error, results, fields) => {
+          if (error) throw error;
+          res.json({ pesan: "sukses!" });
+        }
+      );
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Server error");
+    }
+  });
+
+  // go_unlike
+  app.post("/api/go_unlike/", async (req, res) => {
+    try {
+      const user = req.body.user_uuid;
+      const post = req.body.post_uuid;
+
+      // insert
+      pool.query(
+        "DELETE FROM likes WHERE user = ? AND post = ?",
+        [user, post],
         (error, results, fields) => {
           if (error) throw error;
           res.json({ pesan: "sukses!" });

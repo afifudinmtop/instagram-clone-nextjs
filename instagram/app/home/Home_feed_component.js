@@ -1,7 +1,15 @@
 "use client";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 
 const Home_feed_components = (props) => {
+  const uuid_owner = props.uuid_owner;
+  const post_uuid = props.uuid;
+
+  const status_love = props.likes;
+  const [love, set_love] = useState(status_love === "yes" ? "hidden" : "");
+  const [unlove, set_unlove] = useState(status_love === "yes" ? "" : "hidden");
+
   const timeAgo = (timestamp) => {
     const now = new Date();
     const past = new Date(timestamp);
@@ -27,6 +35,66 @@ const Home_feed_components = (props) => {
         past.getFullYear()
       );
     }
+  };
+
+  const go_like = () => {
+    fetch("/api/go_like/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ user_uuid: uuid_owner, post_uuid: post_uuid }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            "Network response was not ok: " + response.statusText
+          );
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (data.pesan == "sukses!") {
+          set_love("hidden");
+          set_unlove("");
+        } else {
+          set_love("");
+          set_unlove("hidden");
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
+      });
+  };
+
+  const go_unlike = () => {
+    fetch("/api/go_unlike/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ user_uuid: uuid_owner, post_uuid: post_uuid }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            "Network response was not ok: " + response.statusText
+          );
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (data.pesan == "sukses!") {
+          set_love("");
+          set_unlove("hidden");
+        } else {
+          set_love("hidden");
+          set_unlove("");
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
+      });
   };
 
   return (
@@ -56,7 +124,20 @@ const Home_feed_components = (props) => {
       {/* button action */}
       <div className="flex justify-between my-[12px] px-[12px]">
         <div className="flex gap-[12px]">
-          <img src={"/heart.png"} className="w-[24px] h-[24px]" />
+          {/* love */}
+          <img
+            onClick={go_like}
+            src={"/heart.png"}
+            className={"w-[24px] h-[24px] " + love}
+          />
+
+          {/* unlove */}
+          <img
+            onClick={go_unlike}
+            src={"/heart_fill.png"}
+            className={"w-[24px] h-[24px] " + unlove}
+          />
+
           <img src={"/comment.png"} className="w-[24px] h-[24px]" />
           <img src={"/share.png"} className="w-[24px] h-[24px]" />
         </div>

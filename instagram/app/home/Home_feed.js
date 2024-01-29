@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 
 import Home_feed_components from "./Home_feed_component";
 
-const Home_feed = () => {
+const Home_feed = (props) => {
+  const uuid_owner = props.uuid_owner;
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -36,6 +37,7 @@ const Home_feed = () => {
       {data.map((item) => (
         <Home_feed_components
           key={item.post_uuid}
+          uuid_owner={uuid_owner}
           uuid={item.post_uuid}
           avatar={item.user_gambar}
           name={item.user_username}
@@ -43,6 +45,7 @@ const Home_feed = () => {
           caption={item.post_caption}
           user_uuid={item.user_uuid}
           ts={item.post_ts}
+          likes={item.likes}
         />
       ))}
     </div>
