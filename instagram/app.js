@@ -619,12 +619,6 @@ nextApp.prepare().then(() => {
     }
   });
 
-  // Rute Logout
-  app.get("/api/logout", (req, res) => {
-    req.session.destroy(); // Menghapus sesi
-    res.redirect("/login");
-  });
-
   // Rute untuk memeriksa status sesi
   app.get("/api/session", (req, res) => {
     res.json({ user: req.session.user || null });

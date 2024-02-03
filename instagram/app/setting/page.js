@@ -71,7 +71,7 @@ const Page = () => {
       <Setting_header />
       <Setting_photo gambar={gambar} />
       <Setting_field name={name} bio={bio} username={username} />
-      <Link href="/api/logout" className="flex justify-between mt-6">
+      <Link href="/api/auth/logout" className="flex justify-between mt-6">
         <div className="text-red-500 my-auto">Logout</div>
         <img src="/arrow_right.png" className="w-[7px] h-[12px] my-auto" />
       </Link>
