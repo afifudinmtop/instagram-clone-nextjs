@@ -16,6 +16,7 @@ const cors = require("cors");
 
 // import routes
 const authRoutes = require("./routes/authRoutes");
+const followRoutes = require("./routes/followRoutes");
 
 nextApp.prepare().then(() => {
   const app = express();
@@ -78,8 +79,9 @@ nextApp.prepare().then(() => {
     })
   );
 
-  // authRoutes
+  // use Routes
   app.use("/api/auth", authRoutes);
+  app.use("/api/follow", followRoutes);
 
   // get feed
   app.get("/api/feed/", async (req, res) => {
@@ -445,30 +447,6 @@ nextApp.prepare().then(() => {
               );
             }
           );
-        }
-      );
-    } catch (error) {
-      console.error(error);
-      res.status(500).send("Server error");
-    }
-  });
-
-  // go_follow
-  app.post("/api/go_follow/", async (req, res) => {
-    try {
-      const user2 = req.body.user_uuid;
-      const user1 = req.session.user.uuid;
-
-      // insert
-      pool.query(
-        "INSERT INTO follow SET ?",
-        {
-          user1: user1,
-          user2: user2,
-        },
-        (error, results, fields) => {
-          if (error) throw error;
-          res.json({ pesan: "sukses!" });
         }
       );
     } catch (error) {

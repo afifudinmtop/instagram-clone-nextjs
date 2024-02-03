@@ -14,7 +14,7 @@ const Page = () => {
   }, []);
 
   const cek_login = () => {
-    fetch("/api/session_check", {
+    fetch("/api/auth/session_check", {
       method: "GET",
       cache: "no-store",
     })

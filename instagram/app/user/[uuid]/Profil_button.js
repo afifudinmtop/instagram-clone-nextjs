@@ -41,7 +41,7 @@ const Profil_button = (props) => {
   };
 
   const go_follow = () => {
-    fetch("/api/go_follow/", {
+    fetch("/api/follow/go_follow/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

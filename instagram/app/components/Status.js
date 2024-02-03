@@ -9,7 +9,7 @@ const Status = () => {
   }, []);
 
   const fetchData = () => {
-    fetch("/api/session/", {
+    fetch("/api/auth/session/", {
       cache: "no-store",
       method: "GET",
     })
