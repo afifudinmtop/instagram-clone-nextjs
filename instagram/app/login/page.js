@@ -43,7 +43,7 @@ const Page = () => {
       return set_notif("password min 6 character!");
     }
 
-    fetch("/api/login/", {
+    fetch("/api/auth/login/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
