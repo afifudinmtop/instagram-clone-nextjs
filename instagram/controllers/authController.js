@@ -2,7 +2,6 @@ const { pool } = require("../utils/mysql");
 const bcrypt = require("bcryptjs");
 const { v4: uuidv4 } = require("uuid");
 
-// login
 const login = async (req, res) => {
   try {
     const username = req.body.username;
@@ -32,7 +31,6 @@ const login = async (req, res) => {
   }
 };
 
-// register
 const register = async (req, res) => {
   try {
     const username = req.body.username;
@@ -71,14 +69,26 @@ const register = async (req, res) => {
   }
 };
 
-// logout
 const logout = (req, res) => {
   req.session.destroy(); // Menghapus sesi
   res.redirect("/login");
+};
+
+const session = (req, res) => {
+  res.json({ user: req.session.user || null });
+};
+
+const session_check = (req, res) => {
+  if (req.session.user) {
+    return res.json({ isLoggedIn: true });
+  }
+  return res.json({ isLoggedIn: false });
 };
 
 module.exports = {
   login,
   register,
   logout,
+  session,
+  session_check,
 };

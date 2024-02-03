@@ -619,18 +619,6 @@ nextApp.prepare().then(() => {
     }
   });
 
-  // Rute untuk memeriksa status sesi
-  app.get("/api/session", (req, res) => {
-    res.json({ user: req.session.user || null });
-  });
-
-  app.get("/api/session_check", (req, res) => {
-    if (req.session.user) {
-      return res.json({ isLoggedIn: true });
-    }
-    return res.json({ isLoggedIn: false });
-  });
-
   // Semua request lain akan di-handle oleh Next.js
   app.get("*", (req, res) => {
     return handle(req, res);
