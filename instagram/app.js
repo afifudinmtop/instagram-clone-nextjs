@@ -13,7 +13,6 @@ const mysql = require("mysql");
 const { v4: uuidv4 } = require("uuid");
 const fs = require("fs");
 const cors = require("cors");
-const bcrypt = require("bcryptjs");
 
 // import routes
 const authRoutes = require("./routes/authRoutes");
@@ -79,51 +78,8 @@ nextApp.prepare().then(() => {
     })
   );
 
+  // authRoutes
   app.use("/api/auth", authRoutes);
-
-  // API route test
-  app.get("/api/hello", (req, res) => {
-    res.json({ message: "Hello from Express!" });
-  });
-
-  // register
-  app.post("/api/register/", async (req, res) => {
-    try {
-      const username = req.body.username;
-      const password = req.body.password;
-      const hash = bcrypt.hashSync(password, 10);
-      const uuid = uuidv4();
-
-      // check existing username
-      pool.query(
-        "SELECT * FROM user WHERE username = ?",
-        [username],
-        (error, results, fields) => {
-          if (results.length > 0) {
-            res.json({ pesan: "username exist!" });
-          } else {
-            // Simpan data ke MySQL
-            pool.query(
-              "INSERT INTO user SET ?",
-              {
-                uuid: uuid,
-                password: hash,
-                username: username,
-                gambar: "avatar.png",
-              },
-              (error, results, fields) => {
-                if (error) throw error;
-                res.json({ pesan: "sukses!" });
-              }
-            );
-          }
-        }
-      );
-    } catch (error) {
-      console.error(error);
-      res.status(500).send("Server error");
-    }
-  });
 
   // get feed
   app.get("/api/feed/", async (req, res) => {
