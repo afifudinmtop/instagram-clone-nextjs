@@ -11,7 +11,7 @@ const Profil_button = (props) => {
   }, []);
 
   const cek_follow = () => {
-    fetch("/api/cek_follow/", {
+    fetch("/api/follow/cek_follow/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

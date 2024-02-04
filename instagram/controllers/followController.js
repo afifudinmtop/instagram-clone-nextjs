@@ -85,9 +85,36 @@ const get_list_follower = async (req, res) => {
   }
 };
 
+const cek_follow = async (req, res) => {
+  try {
+    const user1 = req.session.user.uuid;
+    const user2 = req.body.user_uuid;
+
+    // check existing relationship
+    pool.query(
+      "SELECT * FROM follow WHERE user1 = ? AND user2 = ?",
+      [user1, user2],
+      (error, results, fields) => {
+        if (results.length < 1) {
+          return res.json({ pesan: "belum follow" });
+        }
+
+        // kalau ada
+        else {
+          return res.json({ pesan: "follow" });
+        }
+      }
+    );
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server error");
+  }
+};
+
 module.exports = {
   go_follow,
   go_unfollow,
   get_list_following,
   get_list_follower,
+  cek_follow,
 };
