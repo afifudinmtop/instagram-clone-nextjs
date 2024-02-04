@@ -43,7 +43,29 @@ const go_unfollow = async (req, res) => {
   }
 };
 
+const get_list_following = async (req, res) => {
+  const user_uuid = req.body.user_uuid;
+
+  try {
+    // get data
+    pool.query(
+      `SELECT user.* 
+        FROM user 
+        JOIN follow ON user.uuid = follow.user2 
+        WHERE follow.user1 = ?;`,
+      [user_uuid],
+      (error, results, fields) => {
+        res.json(results);
+      }
+    );
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server error");
+  }
+};
+
 module.exports = {
   go_follow,
   go_unfollow,
+  get_list_following,
 };

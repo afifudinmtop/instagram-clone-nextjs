@@ -36,7 +36,7 @@ const Page = ({ params }) => {
   };
 
   const get_list_following = () => {
-    fetch("/api/get_list_following/", {
+    fetch("/api/follow/get_list_following/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -208,28 +208,6 @@ nextApp.prepare().then(() => {
     }
   });
 
-  // get_list_following
-  app.post("/api/get_list_following/", async (req, res) => {
-    const user_uuid = req.body.user_uuid;
-
-    try {
-      // get data
-      pool.query(
-        `SELECT user.* 
-        FROM user 
-        JOIN follow ON user.uuid = follow.user2 
-        WHERE follow.user1 = ?;`,
-        [user_uuid],
-        (error, results, fields) => {
-          res.json(results);
-        }
-      );
-    } catch (error) {
-      console.error(error);
-      res.status(500).send("Server error");
-    }
-  });
-
   // get_list_follower
   app.post("/api/get_list_follower/", async (req, res) => {
     const user_uuid = req.body.user_uuid;
