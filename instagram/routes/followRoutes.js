@@ -6,5 +6,6 @@ router.post("/go_follow", followController.go_follow);
 router.post("/go_unfollow", followController.go_unfollow);
 
 router.post("/get_list_following", followController.get_list_following);
+router.post("/get_list_follower", followController.get_list_follower);
 
 module.exports = router;
