@@ -455,27 +455,6 @@ nextApp.prepare().then(() => {
     }
   });
 
-  // go_unfollow
-  app.post("/api/go_unfollow/", async (req, res) => {
-    try {
-      const user1 = req.session.user.uuid;
-      const user2 = req.body.user_uuid;
-
-      // insert
-      pool.query(
-        "DELETE FROM follow WHERE user1 = ? AND user2 = ?",
-        [user1, user2],
-        (error, results, fields) => {
-          if (error) throw error;
-          res.json({ pesan: "sukses!" });
-        }
-      );
-    } catch (error) {
-      console.error(error);
-      res.status(500).send("Server error");
-    }
-  });
-
   // go_like
   app.post("/api/go_like/", async (req, res) => {
     try {

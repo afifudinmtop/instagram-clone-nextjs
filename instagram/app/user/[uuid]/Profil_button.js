@@ -65,7 +65,7 @@ const Profil_button = (props) => {
   };
 
   const go_unfollow = () => {
-    fetch("/api/go_unfollow/", {
+    fetch("/api/follow/go_unfollow/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
