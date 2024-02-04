@@ -54,7 +54,7 @@ const Page = () => {
   };
 
   const get_profil = () => {
-    fetch("/api/get_profil/", {
+    fetch("/api/user/get_profil/", {
       method: "GET",
     })
       .then((response) => {

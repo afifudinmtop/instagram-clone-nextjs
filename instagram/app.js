@@ -19,6 +19,7 @@ const authRoutes = require("./routes/authRoutes");
 const followRoutes = require("./routes/followRoutes");
 const searchRoutes = require("./routes/searchRoutes");
 const statsRoutes = require("./routes/statsRoutes");
+const userRoutes = require("./routes/userRoutes");
 
 nextApp.prepare().then(() => {
   const app = express();
@@ -86,6 +87,7 @@ nextApp.prepare().then(() => {
   app.use("/api/follow", followRoutes);
   app.use("/api/search", searchRoutes);
   app.use("/api/get_stats", statsRoutes);
+  app.use("/api/user", userRoutes);
 
   // get feed
   app.get("/api/feed/", async (req, res) => {
@@ -184,24 +186,6 @@ nextApp.prepare().then(() => {
         [user_uuid],
         (error, results, fields) => {
           res.json(results);
-        }
-      );
-    } catch (error) {
-      console.error(error);
-      res.status(500).send("Server error");
-    }
-  });
-
-  // get_profil
-  app.get("/api/get_profil/", async (req, res) => {
-    try {
-      const user_uuid = req.session.user.uuid;
-
-      pool.query(
-        "SELECT * FROM user WHERE uuid = ?",
-        [user_uuid],
-        (error, results, fields) => {
-          return res.json(results);
         }
       );
     } catch (error) {
