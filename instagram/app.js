@@ -17,6 +17,7 @@ const cors = require("cors");
 // import routes
 const authRoutes = require("./routes/authRoutes");
 const followRoutes = require("./routes/followRoutes");
+const searchRoutes = require("./routes/searchRoutes");
 
 nextApp.prepare().then(() => {
   const app = express();
@@ -82,6 +83,7 @@ nextApp.prepare().then(() => {
   // use Routes
   app.use("/api/auth", authRoutes);
   app.use("/api/follow", followRoutes);
+  app.use("/api/search", searchRoutes);
 
   // get feed
   app.get("/api/feed/", async (req, res) => {
@@ -178,26 +180,6 @@ nextApp.prepare().then(() => {
       pool.query(
         `SELECT * FROM post WHERE user != ? ORDER BY RAND() LIMIT 100;`,
         [user_uuid],
-        (error, results, fields) => {
-          res.json(results);
-        }
-      );
-    } catch (error) {
-      console.error(error);
-      res.status(500).send("Server error");
-    }
-  });
-
-  // get user search
-  app.post("/api/search/", async (req, res) => {
-    const searchValue = `%${req.body.searchValue}%`;
-    const user_uuid = req.session.user.uuid;
-
-    try {
-      // get data
-      pool.query(
-        `SELECT * FROM user WHERE (name LIKE ? OR username LIKE ?) AND uuid != ? LIMIT 6;`,
-        [searchValue, searchValue, user_uuid],
         (error, results, fields) => {
           res.json(results);
         }
