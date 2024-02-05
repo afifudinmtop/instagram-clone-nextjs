@@ -42,7 +42,7 @@ const Page = ({ params }) => {
   };
 
   const get_feed = () => {
-    fetch("/api/post/", {
+    fetch("/api/post/post/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

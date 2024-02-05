@@ -91,38 +91,6 @@ nextApp.prepare().then(() => {
   app.use("/api/user", userRoutes);
   app.use("/api/post", postRoutes);
 
-  // get post
-  app.post("/api/post/", async (req, res) => {
-    try {
-      const uuid = req.body.uuid;
-
-      // get data
-      pool.query(
-        `SELECT 
-        post.uuid AS post_uuid, 
-        post.gambar AS post_gambar, 
-        post.caption AS post_caption, 
-        post.ts AS post_ts, 
-        user.uuid AS user_uuid, 
-        user.username AS user_username, 
-        user.gambar AS user_gambar
-
-        FROM post
-
-        JOIN user ON post.user = user.uuid
-
-        WHERE post.uuid = ?;`,
-        [uuid],
-        (error, results, fields) => {
-          res.json(results);
-        }
-      );
-    } catch (error) {
-      console.error(error);
-      res.status(500).send("Server error");
-    }
-  });
-
   // get all post
   app.get("/api/explore/", async (req, res) => {
     const user_uuid = req.session.user.uuid;
