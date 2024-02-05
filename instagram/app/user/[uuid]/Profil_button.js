@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useState, useEffect } from "react";
 
 const Profil_button = (props) => {
@@ -90,6 +91,7 @@ const Profil_button = (props) => {
 
   return (
     <div className="flex justify-between gap-[14px] mx-[16px] mt-[8px]">
+      {/* Follow */}
       <div
         id="button_follow"
         onClick={go_follow}
@@ -100,6 +102,8 @@ const Profil_button = (props) => {
       >
         Follow
       </div>
+
+      {/* Unfollow */}
       <div
         onClick={go_unfollow}
         id="button_unfollow"
@@ -110,9 +114,14 @@ const Profil_button = (props) => {
       >
         Unfollow
       </div>
-      <div className="bg-[#DFDFDF] text-black text-[10px] text-center rounded h-[25px] w-1/2 leading-[25px]">
+
+      {/* Message */}
+      <Link
+        href={"/dm/" + user_uuid}
+        className="bg-[#DFDFDF] text-black text-[10px] text-center rounded h-[25px] w-1/2 leading-[25px]"
+      >
         Message
-      </div>
+      </Link>
     </div>
   );
 };

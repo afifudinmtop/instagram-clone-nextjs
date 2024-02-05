@@ -18,6 +18,7 @@ const userRoutes = require("./routes/userRoutes");
 const postRoutes = require("./routes/postRoutes");
 const likeRoutes = require("./routes/likeRoutes");
 const commentRoutes = require("./routes/commentRoutes.js");
+const dmRoutes = require("./routes/dmRoutes.js");
 
 nextApp.prepare().then(() => {
   const app = express();
@@ -45,6 +46,7 @@ nextApp.prepare().then(() => {
   app.use("/api/post", postRoutes);
   app.use("/api/like", likeRoutes);
   app.use("/api/comment", commentRoutes);
+  app.use("/api/dm", dmRoutes);
 
   // Semua request lain akan di-handle oleh Next.js
   app.get("*", (req, res) => {

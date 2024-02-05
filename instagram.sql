@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 05, 2024 at 05:35 AM
+-- Generation Time: Feb 05, 2024 at 11:17 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -24,6 +24,52 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `comment`
+--
+
+CREATE TABLE `comment` (
+  `id` int(11) NOT NULL,
+  `uuid` text DEFAULT NULL,
+  `uuid_post` text DEFAULT NULL,
+  `uuid_user` text DEFAULT NULL,
+  `text` text DEFAULT NULL,
+  `ts` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `comment`
+--
+
+INSERT INTO `comment` (`id`, `uuid`, `uuid_post`, `uuid_user`, `text`, `ts`) VALUES
+(1, 'a23aa88b-c584-4d46-ae3a-0501cdae2263', '42f14816-4340-403d-b11d-bd1ccc07b6ff', '926dde59-7de7-493c-aed3-b4573247acf0', 'tes komen', '2024-02-05 14:53:53'),
+(2, 'b63c1e5e-dec6-4fc5-9113-345c70511c56', '42f14816-4340-403d-b11d-bd1ccc07b6ff', 'd074ee5c-5682-4a73-8777-9c1b25cde638', 'ok jos', '2024-02-05 15:00:57');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dm`
+--
+
+CREATE TABLE `dm` (
+  `id` int(11) NOT NULL,
+  `uuid_pesan` text DEFAULT NULL,
+  `uuid_pengirim` text DEFAULT NULL,
+  `uuid_penerima` text DEFAULT NULL,
+  `pesan` text DEFAULT NULL,
+  `ts` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `dm`
+--
+
+INSERT INTO `dm` (`id`, `uuid_pesan`, `uuid_pengirim`, `uuid_penerima`, `pesan`, `ts`) VALUES
+(1, 'df66d70f-f0af-480b-af77-e572ae30a6fa', '926dde59-7de7-493c-aed3-b4573247acf0', 'd074ee5c-5682-4a73-8777-9c1b25cde638', 'halo kak', '2024-02-05 16:51:37'),
+(2, '82409669-a6c6-4ca2-b7a5-54473f7b797f', 'd074ee5c-5682-4a73-8777-9c1b25cde638', '926dde59-7de7-493c-aed3-b4573247acf0', 'halo juga', '2024-02-05 17:16:34');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `follow`
 --
 
@@ -40,7 +86,9 @@ CREATE TABLE `follow` (
 INSERT INTO `follow` (`id`, `user1`, `user2`) VALUES
 (2, '926dde59-7de7-493c-aed3-b4573247acf0', 'd074ee5c-5682-4a73-8777-9c1b25cde638'),
 (4, 'd074ee5c-5682-4a73-8777-9c1b25cde638', '926dde59-7de7-493c-aed3-b4573247acf0'),
-(7, '926dde59-7de7-493c-aed3-b4573247acf0', '70d9efda-f354-44cc-bd5f-87d12530dbc7');
+(7, '926dde59-7de7-493c-aed3-b4573247acf0', '70d9efda-f354-44cc-bd5f-87d12530dbc7'),
+(8, 'd4ab5234-5bf3-4ff0-9e84-ba2158d4cf98', '70d9efda-f354-44cc-bd5f-87d12530dbc7'),
+(9, 'd074ee5c-5682-4a73-8777-9c1b25cde638', '70d9efda-f354-44cc-bd5f-87d12530dbc7');
 
 -- --------------------------------------------------------
 
@@ -59,7 +107,8 @@ CREATE TABLE `likes` (
 --
 
 INSERT INTO `likes` (`id`, `post`, `user`) VALUES
-(1, 'a00fbc8c-1d01-422b-8f19-ccda441aca0d', '926dde59-7de7-493c-aed3-b4573247acf0');
+(4, 'a00fbc8c-1d01-422b-8f19-ccda441aca0d', '926dde59-7de7-493c-aed3-b4573247acf0'),
+(5, 'a00fbc8c-1d01-422b-8f19-ccda441aca0d', 'd4ab5234-5bf3-4ff0-9e84-ba2158d4cf98');
 
 -- --------------------------------------------------------
 
@@ -147,6 +196,18 @@ INSERT INTO `user` (`id`, `uuid`, `name`, `username`, `gambar`, `bio`, `password
 --
 
 --
+-- Indexes for table `comment`
+--
+ALTER TABLE `comment`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `dm`
+--
+ALTER TABLE `dm`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `follow`
 --
 ALTER TABLE `follow`
@@ -175,16 +236,28 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `comment`
+--
+ALTER TABLE `comment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `dm`
+--
+ALTER TABLE `dm`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `follow`
 --
 ALTER TABLE `follow`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `post`
