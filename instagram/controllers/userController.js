@@ -17,6 +17,24 @@ const get_profil = async (req, res) => {
   }
 };
 
+const get_user = async (req, res) => {
+  try {
+    const user_uuid = req.body.user_uuid;
+
+    pool.query(
+      "SELECT * FROM user WHERE uuid = ?",
+      [user_uuid],
+      (error, results, fields) => {
+        return res.json(results);
+      }
+    );
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server error");
+  }
+};
+
 module.exports = {
   get_profil,
+  get_user,
 };

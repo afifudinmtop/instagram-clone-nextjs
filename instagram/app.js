@@ -194,24 +194,6 @@ nextApp.prepare().then(() => {
     }
   });
 
-  // get_user
-  app.post("/api/get_user/", async (req, res) => {
-    try {
-      const user_uuid = req.body.user_uuid;
-
-      pool.query(
-        "SELECT * FROM user WHERE uuid = ?",
-        [user_uuid],
-        (error, results, fields) => {
-          return res.json(results);
-        }
-      );
-    } catch (error) {
-      console.error(error);
-      res.status(500).send("Server error");
-    }
-  });
-
   // user_feed
   app.post("/api/user_feed/", async (req, res) => {
     try {

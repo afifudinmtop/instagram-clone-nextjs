@@ -56,7 +56,7 @@ const Page = ({ params }) => {
   };
 
   const get_profil = () => {
-    fetch("/api/get_user/", {
+    fetch("/api/user/get_user/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
