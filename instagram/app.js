@@ -257,43 +257,6 @@ nextApp.prepare().then(() => {
     }
   });
 
-  // update_foto_profil
-  app.post(
-    "/api/update_foto_profil/",
-    upload.single("gambar"),
-    async (req, res) => {
-      try {
-        const file = req.file;
-        const resizedFilename = file.filename;
-        const user_uuid = req.session.user.uuid;
-
-        // Resize gambar
-        await sharp(file.path)
-          .resize(100, 100)
-          .toFile(`${uploadDir}/x-${resizedFilename}`);
-
-        deleteFile(`${uploadDir}/${resizedFilename}`);
-
-        renameFile(
-          `${uploadDir}/x-${resizedFilename}`,
-          `${uploadDir}/${resizedFilename}`
-        );
-
-        // update data
-        pool.query(
-          "UPDATE user SET gambar = ? WHERE uuid = ?",
-          [resizedFilename, user_uuid],
-          (error, results, fields) => {
-            return res.json({ pesan: "sukses!" });
-          }
-        );
-      } catch (error) {
-        console.error(error);
-        res.status(500).send("Server error");
-      }
-    }
-  );
-
   // upload foto
   app.post("/api/upload_gambar/", upload.single("gambar"), async (req, res) => {
     try {

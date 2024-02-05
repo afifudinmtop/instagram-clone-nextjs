@@ -1,4 +1,9 @@
+const sharp = require("sharp");
+
 const { pool } = require("../utils/mysql");
+const { uploadDir } = require("../utils/uploadDir");
+const { deleteFile } = require("../utils/deleteFile");
+const { renameFile } = require("../utils/renameFile");
 
 const get_profil = async (req, res) => {
   try {
@@ -105,10 +110,50 @@ const update_name = async (req, res) => {
   }
 };
 
+const update_foto_profil = async (req, res) => {
+  try {
+    const file = req.file;
+    const resizedFilename = file.filename;
+    const user_uuid = req.session.user.uuid;
+
+    // Resize gambar
+    await sharp(file.path)
+      .resize(100, 100)
+      .toFile(`${uploadDir}/x-${resizedFilename}`);
+
+    renameFile(
+      `${uploadDir}/x-${resizedFilename}`,
+      `${uploadDir}/${resizedFilename}`
+    );
+
+    pool.query(
+      "SELECT * FROM user WHERE uuid = ?",
+      [user_uuid],
+      (error, results, fields) => {
+        let gambar_old = results[0].gambar;
+        deleteFile(`${uploadDir}/${gambar_old}`);
+
+        // update data
+        pool.query(
+          "UPDATE user SET gambar = ? WHERE uuid = ?",
+          [resizedFilename, user_uuid],
+          (error, results, fields) => {
+            return res.json({ pesan: "sukses!" });
+          }
+        );
+      }
+    );
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server error");
+  }
+};
+
 module.exports = {
   get_profil,
   get_user,
   update_bio,
   update_username,
   update_name,
+  update_foto_profil,
 };

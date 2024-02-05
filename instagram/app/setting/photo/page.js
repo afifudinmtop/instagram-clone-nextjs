@@ -70,7 +70,7 @@ const Page = () => {
       return;
     }
 
-    fetch("/api/update_foto_profil/", {
+    fetch("/api/user/update_foto_profil/", {
       method: "POST",
       body: formData,
     })
