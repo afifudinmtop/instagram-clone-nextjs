@@ -12,7 +12,7 @@ const Profil_feed = (props) => {
   }, []);
 
   const get_feed = () => {
-    fetch("/api/user_feed/", {
+    fetch("/api/post/user_feed/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

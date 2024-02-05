@@ -101,9 +101,27 @@ const explore = async (req, res) => {
   }
 };
 
+const user_feed = async (req, res) => {
+  try {
+    const user_uuid = req.body.user_uuid;
+
+    pool.query(
+      "SELECT * FROM post WHERE user = ? ORDER BY id DESC",
+      [user_uuid],
+      (error, results, fields) => {
+        return res.json(results);
+      }
+    );
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server error");
+  }
+};
+
 module.exports = {
   feed,
   profil_feed,
   post,
   explore,
+  user_feed,
 };

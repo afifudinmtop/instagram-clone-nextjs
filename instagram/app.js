@@ -91,24 +91,6 @@ nextApp.prepare().then(() => {
   app.use("/api/user", userRoutes);
   app.use("/api/post", postRoutes);
 
-  // user_feed
-  app.post("/api/user_feed/", async (req, res) => {
-    try {
-      const user_uuid = req.body.user_uuid;
-
-      pool.query(
-        "SELECT * FROM post WHERE user = ? ORDER BY id DESC",
-        [user_uuid],
-        (error, results, fields) => {
-          return res.json(results);
-        }
-      );
-    } catch (error) {
-      console.error(error);
-      res.status(500).send("Server error");
-    }
-  });
-
   // go_like
   app.post("/api/go_like/", async (req, res) => {
     try {
