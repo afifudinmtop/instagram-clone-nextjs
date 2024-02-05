@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const Comments_list = (props) => {
   const data = props.data;
 
@@ -32,13 +34,18 @@ const Comments_list = (props) => {
     <div className="h-5/6 my-[10px] overflow-auto px-5">
       {data.map((item) => (
         <div key={item.uuid_comment} className="flex mb-[22px]">
-          <img
-            src={"/uploads/" + item.gambar}
-            className="w-[40px] h-[40px] rounded-full me-[14px]"
-          />
+          <Link href={"/user/" + item.uuid_user}>
+            <img
+              src={"/uploads/" + item.gambar}
+              className="w-[40px] h-[40px] rounded-full me-[14px]"
+            />
+          </Link>
+
           <div className="my-auto">
             <div className="flex">
-              <div className="font-bold">{item.username}</div>
+              <Link href={"/user/" + item.uuid_user} className="font-bold">
+                {item.username}
+              </Link>
               <div className="ps-2 text-[#737373]">{timeAgo(item.ts)}</div>
             </div>
             <div className="">{item.text}</div>
