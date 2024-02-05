@@ -58,6 +58,7 @@ const profil_feed = async (req, res) => {
 
 const post = async (req, res) => {
   try {
+    const user_uuid = req.session.user.uuid;
     const uuid = req.body.uuid;
 
     // get data
@@ -69,14 +70,16 @@ const post = async (req, res) => {
             post.ts AS post_ts, 
             user.uuid AS user_uuid, 
             user.username AS user_username, 
-            user.gambar AS user_gambar
-    
+            user.gambar AS user_gambar,
+            IF(likes.id IS NOT NULL, 'yes', 'no') AS likes 
+
             FROM post
     
             JOIN user ON post.user = user.uuid
+            LEFT JOIN likes ON post.uuid = likes.post AND likes.user = ?
     
             WHERE post.uuid = ?;`,
-      [uuid],
+      [user_uuid, uuid],
       (error, results, fields) => {
         res.json(results);
       }
