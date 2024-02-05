@@ -34,6 +34,25 @@ const feed = async (req, res) => {
   }
 };
 
+const profil_feed = async (req, res) => {
+  try {
+    const user_uuid = req.session.user.uuid;
+
+    // get data
+    pool.query(
+      "SELECT * FROM post WHERE user = ?",
+      [user_uuid],
+      (error, results, fields) => {
+        res.json(results);
+      }
+    );
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server error");
+  }
+};
+
 module.exports = {
   feed,
+  profil_feed,
 };

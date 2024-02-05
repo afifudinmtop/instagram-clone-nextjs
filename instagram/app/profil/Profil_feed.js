@@ -11,7 +11,7 @@ const Profil_feed = () => {
   }, []);
 
   const get_feed = () => {
-    fetch("/api/profil_feed/", {
+    fetch("/api/post/profil_feed/", {
       method: "GET",
       cache: "no-store",
     })
