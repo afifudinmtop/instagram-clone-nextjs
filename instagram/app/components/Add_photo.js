@@ -24,7 +24,7 @@ const Add_photo = () => {
       return;
     }
 
-    fetch("/api/upload_gambar/", {
+    fetch("/api/post/upload_gambar/", {
       method: "POST",
       body: formData,
     })
