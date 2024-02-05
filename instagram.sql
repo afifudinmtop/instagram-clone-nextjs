@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 05, 2024 at 11:17 AM
+-- Generation Time: Feb 05, 2024 at 11:56 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -65,7 +65,9 @@ CREATE TABLE `dm` (
 
 INSERT INTO `dm` (`id`, `uuid_pesan`, `uuid_pengirim`, `uuid_penerima`, `pesan`, `ts`) VALUES
 (1, 'df66d70f-f0af-480b-af77-e572ae30a6fa', '926dde59-7de7-493c-aed3-b4573247acf0', 'd074ee5c-5682-4a73-8777-9c1b25cde638', 'halo kak', '2024-02-05 16:51:37'),
-(2, '82409669-a6c6-4ca2-b7a5-54473f7b797f', 'd074ee5c-5682-4a73-8777-9c1b25cde638', '926dde59-7de7-493c-aed3-b4573247acf0', 'halo juga', '2024-02-05 17:16:34');
+(2, '82409669-a6c6-4ca2-b7a5-54473f7b797f', 'd074ee5c-5682-4a73-8777-9c1b25cde638', '926dde59-7de7-493c-aed3-b4573247acf0', 'halo juga', '2024-02-05 17:16:34'),
+(3, '63cbea48-cfa7-45b0-977e-8dd2373b428d', '926dde59-7de7-493c-aed3-b4573247acf0', '70d9efda-f354-44cc-bd5f-87d12530dbc7', 'siang pak agus', '2024-02-05 17:46:08'),
+(4, 'cafa919f-367b-49e4-9305-aafcfef1a6f3', 'd074ee5c-5682-4a73-8777-9c1b25cde638', '926dde59-7de7-493c-aed3-b4573247acf0', 'jos', '2024-02-05 17:55:54');
 
 -- --------------------------------------------------------
 
@@ -245,7 +247,7 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT for table `dm`
 --
 ALTER TABLE `dm`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `follow`

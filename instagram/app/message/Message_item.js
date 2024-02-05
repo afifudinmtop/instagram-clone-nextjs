@@ -1,6 +1,11 @@
+import Link from "next/link";
+
 const Message_item = (props) => {
   return (
-    <div className="flex justify-between ms-[20px] me-[15px] mb-[15px]">
+    <Link
+      href={"/dm/" + props.uuid}
+      className="flex justify-between ms-[20px] me-[15px] mb-[15px]"
+    >
       <div className="flex gap-[20px]">
         <img
           src={"/uploads/" + props.src}
@@ -13,7 +18,7 @@ const Message_item = (props) => {
       </div>
 
       <img src={"/camera.png"} className="w-[21px] h-[21px] my-auto" />
-    </div>
+    </Link>
   );
 };
 

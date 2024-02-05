@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const Home_header = () => {
   return (
     <div className="flex justify-between px-5">
@@ -5,7 +7,9 @@ const Home_header = () => {
 
       <div className="flex my-auto">
         <img src="/logos_love.png" className="w-[22px] h-[22px] me-[25px]" />
-        <img src="/logos_dm.png" className="w-[22px] h-[22px]" />
+        <Link href="/message">
+          <img src="/logos_dm.png" className="w-[22px] h-[22px]" />
+        </Link>
       </div>
     </div>
   );

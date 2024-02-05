@@ -62,7 +62,49 @@ const list_pesan = async (req, res) => {
   }
 };
 
+const list_dm = async (req, res) => {
+  const user = req.session.user.uuid;
+
+  try {
+    // get data
+    pool.query(
+      `
+      SELECT 
+      u.uuid, 
+      u.username, 
+      u.gambar 
+
+      FROM (
+        SELECT DISTINCT
+          CASE
+            WHEN uuid_pengirim = ? THEN uuid_penerima
+            ELSE uuid_pengirim
+          END AS uuid_lawan_bicara
+        FROM dm
+        WHERE ? IN (uuid_pengirim, uuid_penerima)
+      ) AS lawan_bicara
+      JOIN user u ON u.uuid = lawan_bicara.uuid_lawan_bicara;
+      `,
+      [user, user],
+      (error, results, fields) => {
+        if (results.length < 1) {
+          return res.json([]);
+        }
+
+        // data exist
+        else {
+          return res.json(results);
+        }
+      }
+    );
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server error");
+  }
+};
+
 module.exports = {
   send_pesan,
   list_pesan,
+  list_dm,
 };

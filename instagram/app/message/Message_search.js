@@ -1,4 +1,5 @@
-const Message_search = () => {
+// Message_search.js
+const Message_search = ({ onSearchChange }) => {
   return (
     <div className="ms-[20px] me-[15px] my-[10px]">
       <div className="bg-[#E8E8E8] w-full rounded-lg h-[36px] flex px-[12px]">
@@ -7,6 +8,7 @@ const Message_search = () => {
           placeholder="Search"
           type="text"
           className="w-full bg-[#E8E8E8] h-[20px] my-auto text-base outline-none"
+          onChange={(e) => onSearchChange(e.target.value)} // Call the passed function on input change
         />
       </div>
     </div>
