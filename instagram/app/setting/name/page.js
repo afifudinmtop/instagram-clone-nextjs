@@ -17,7 +17,7 @@ const Page = () => {
       return set_notif("name min 6 character!");
     }
 
-    fetch("/api/update_name/", {
+    fetch("/api/user/update_name/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -86,9 +86,29 @@ const update_username = async (req, res) => {
   }
 };
 
+const update_name = async (req, res) => {
+  try {
+    const name = req.body.name;
+    const user_uuid = req.session.user.uuid;
+
+    // get data
+    pool.query(
+      "UPDATE user SET name = ? WHERE uuid = ?",
+      [name, user_uuid],
+      (error, results, fields) => {
+        return res.json({ pesan: "sukses!" });
+      }
+    );
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server error");
+  }
+};
+
 module.exports = {
   get_profil,
   get_user,
   update_bio,
   update_username,
+  update_name,
 };

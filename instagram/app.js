@@ -212,26 +212,6 @@ nextApp.prepare().then(() => {
     }
   });
 
-  // update_name
-  app.post("/api/update_name/", async (req, res) => {
-    try {
-      const name = req.body.name;
-      const user_uuid = req.session.user.uuid;
-
-      // get data
-      pool.query(
-        "UPDATE user SET name = ? WHERE uuid = ?",
-        [name, user_uuid],
-        (error, results, fields) => {
-          return res.json({ pesan: "sukses!" });
-        }
-      );
-    } catch (error) {
-      console.error(error);
-      res.status(500).send("Server error");
-    }
-  });
-
   // go_like
   app.post("/api/go_like/", async (req, res) => {
     try {
