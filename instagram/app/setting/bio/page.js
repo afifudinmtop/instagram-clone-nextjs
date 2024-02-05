@@ -13,7 +13,7 @@ const Page = () => {
   }, []);
 
   const upload_data = () => {
-    fetch("/api/update_bio/", {
+    fetch("/api/user/update_bio/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

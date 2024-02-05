@@ -232,26 +232,6 @@ nextApp.prepare().then(() => {
     }
   });
 
-  // update_bio
-  app.post("/api/update_bio/", async (req, res) => {
-    try {
-      const bio = req.body.bio;
-      const user_uuid = req.session.user.uuid;
-
-      // update data
-      pool.query(
-        "UPDATE user SET bio = ? WHERE uuid = ?",
-        [bio, user_uuid],
-        (error, results, fields) => {
-          return res.json({ pesan: "sukses!" });
-        }
-      );
-    } catch (error) {
-      console.error(error);
-      res.status(500).send("Server error");
-    }
-  });
-
   // update_username
   app.post("/api/update_username/", async (req, res) => {
     try {
