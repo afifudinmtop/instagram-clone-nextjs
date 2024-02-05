@@ -17,6 +17,7 @@ const searchRoutes = require("./routes/searchRoutes");
 const statsRoutes = require("./routes/statsRoutes");
 const userRoutes = require("./routes/userRoutes");
 const postRoutes = require("./routes/postRoutes");
+const likeRoutes = require("./routes/likeRoutes");
 
 nextApp.prepare().then(() => {
   const app = express();
@@ -50,30 +51,7 @@ nextApp.prepare().then(() => {
   app.use("/api/get_stats", statsRoutes);
   app.use("/api/user", userRoutes);
   app.use("/api/post", postRoutes);
-
-  // go_like
-  app.post("/api/go_like/", async (req, res) => {
-    try {
-      const user = req.body.user_uuid;
-      const post = req.body.post_uuid;
-
-      // insert
-      pool.query(
-        "INSERT INTO likes SET ?",
-        {
-          user: user,
-          post: post,
-        },
-        (error, results, fields) => {
-          if (error) throw error;
-          res.json({ pesan: "sukses!" });
-        }
-      );
-    } catch (error) {
-      console.error(error);
-      res.status(500).send("Server error");
-    }
-  });
+  app.use("/api/like", likeRoutes);
 
   // go_unlike
   app.post("/api/go_unlike/", async (req, res) => {
