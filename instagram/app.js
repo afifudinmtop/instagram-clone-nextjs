@@ -91,25 +91,6 @@ nextApp.prepare().then(() => {
   app.use("/api/user", userRoutes);
   app.use("/api/post", postRoutes);
 
-  // get all post
-  app.get("/api/explore/", async (req, res) => {
-    const user_uuid = req.session.user.uuid;
-
-    try {
-      // get data
-      pool.query(
-        `SELECT * FROM post WHERE user != ? ORDER BY RAND() LIMIT 100;`,
-        [user_uuid],
-        (error, results, fields) => {
-          res.json(results);
-        }
-      );
-    } catch (error) {
-      console.error(error);
-      res.status(500).send("Server error");
-    }
-  });
-
   // user_feed
   app.post("/api/user_feed/", async (req, res) => {
     try {

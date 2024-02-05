@@ -10,7 +10,7 @@ const Explore_collection = () => {
   }, []);
 
   const get_feed = () => {
-    fetch("/api/explore/", {
+    fetch("/api/post/explore/", {
       method: "GET",
       cache: "no-store",
     })
