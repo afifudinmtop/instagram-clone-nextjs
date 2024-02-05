@@ -68,7 +68,7 @@ const Home_feed_components = (props) => {
   };
 
   const go_unlike = () => {
-    fetch("/api/go_unlike/", {
+    fetch("/api/like/go_unlike/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -23,6 +23,27 @@ const go_like = async (req, res) => {
   }
 };
 
+const go_unlike = async (req, res) => {
+  try {
+    const user = req.body.user_uuid;
+    const post = req.body.post_uuid;
+
+    // insert
+    pool.query(
+      "DELETE FROM likes WHERE user = ? AND post = ?",
+      [user, post],
+      (error, results, fields) => {
+        if (error) throw error;
+        res.json({ pesan: "sukses!" });
+      }
+    );
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server error");
+  }
+};
+
 module.exports = {
   go_like,
+  go_unlike,
 };
