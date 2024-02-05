@@ -138,7 +138,10 @@ const Home_feed_components = (props) => {
             className={"w-[24px] h-[24px] " + unlove}
           />
 
-          <img src={"/comment.png"} className="w-[24px] h-[24px]" />
+          <Link href={"/comments/" + props.uuid} className="">
+            <img src={"/comment.png"} className="w-[24px] h-[24px]" />
+          </Link>
+
           <img src={"/share.png"} className="w-[24px] h-[24px]" />
         </div>
 
