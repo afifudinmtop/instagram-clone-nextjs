@@ -44,7 +44,7 @@ const profil_feed = async (req, res) => {
 
     // get data
     pool.query(
-      "SELECT * FROM post WHERE user = ?",
+      "SELECT * FROM post WHERE user = ? ORDER BY id DESC",
       [user_uuid],
       (error, results, fields) => {
         res.json(results);
