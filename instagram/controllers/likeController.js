@@ -43,7 +43,36 @@ const go_unlike = async (req, res) => {
   }
 };
 
+const get_list_like = async (req, res) => {
+  const post_uuid = req.body.post_uuid;
+
+  try {
+    // get data
+    pool.query(
+      `
+      SELECT 
+      user.uuid AS uuid, 
+      user.name AS name, 
+      user.username AS username, 
+      user.gambar AS gambar 
+
+      FROM likes 
+      JOIN user ON likes.user = user.uuid 
+      WHERE likes.post = ?;
+      `,
+      [post_uuid],
+      (error, results, fields) => {
+        res.json(results);
+      }
+    );
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server error");
+  }
+};
+
 module.exports = {
   go_like,
   go_unlike,
+  get_list_like,
 };
