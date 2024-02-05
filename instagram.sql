@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 29, 2024 at 06:41 PM
+-- Generation Time: Feb 05, 2024 at 05:35 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -40,7 +40,7 @@ CREATE TABLE `follow` (
 INSERT INTO `follow` (`id`, `user1`, `user2`) VALUES
 (2, '926dde59-7de7-493c-aed3-b4573247acf0', 'd074ee5c-5682-4a73-8777-9c1b25cde638'),
 (4, 'd074ee5c-5682-4a73-8777-9c1b25cde638', '926dde59-7de7-493c-aed3-b4573247acf0'),
-(5, '926dde59-7de7-493c-aed3-b4573247acf0', '70d9efda-f354-44cc-bd5f-87d12530dbc7');
+(7, '926dde59-7de7-493c-aed3-b4573247acf0', '70d9efda-f354-44cc-bd5f-87d12530dbc7');
 
 -- --------------------------------------------------------
 
@@ -111,7 +111,9 @@ INSERT INTO `post` (`id`, `uuid`, `user`, `gambar`, `caption`, `ts`) VALUES
 (28, 'e5c05e76-7864-4df1-97c2-48fe73d2b812', '70d9efda-f354-44cc-bd5f-87d12530dbc7', 'e5c05e76-7864-4df1-97c2-48fe73d2b812.jpeg', 'vfasd', '2024-01-27 11:54:34'),
 (29, '1b68324b-fda5-423f-98d3-dc84ef247c76', 'd4ab5234-5bf3-4ff0-9e84-ba2158d4cf98', '1b68324b-fda5-423f-98d3-dc84ef247c76.jpeg', 'cvcvcvc', '2024-01-27 12:00:05'),
 (30, 'e76273c9-7cff-422d-ad67-9ee760d975df', 'd4ab5234-5bf3-4ff0-9e84-ba2158d4cf98', 'e76273c9-7cff-422d-ad67-9ee760d975df.jpeg', 'klklkl', '2024-01-27 12:00:11'),
-(31, '3af32c10-9cd8-4546-8fe8-d7c6e81de22c', 'd4ab5234-5bf3-4ff0-9e84-ba2158d4cf98', '3af32c10-9cd8-4546-8fe8-d7c6e81de22c.jpeg', 'yuyiewqq', '2024-01-27 12:00:22');
+(31, '3af32c10-9cd8-4546-8fe8-d7c6e81de22c', 'd4ab5234-5bf3-4ff0-9e84-ba2158d4cf98', '3af32c10-9cd8-4546-8fe8-d7c6e81de22c.jpeg', 'yuyiewqq', '2024-01-27 12:00:22'),
+(32, 'b9b0b218-8910-406e-ad64-b85b578e4879', '926dde59-7de7-493c-aed3-b4573247acf0', 'b9b0b218-8910-406e-ad64-b85b578e4879.jpeg', 'tes1', '2024-02-05 11:10:15'),
+(33, 'a25bc53b-bd58-41a9-93a0-43550b099d1c', '926dde59-7de7-493c-aed3-b4573247acf0', 'a25bc53b-bd58-41a9-93a0-43550b099d1c.jpeg', 'tes2', '2024-02-05 11:13:39');
 
 -- --------------------------------------------------------
 
@@ -134,10 +136,11 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `uuid`, `name`, `username`, `gambar`, `bio`, `password`) VALUES
-(1, '926dde59-7de7-493c-aed3-b4573247acf0', 'Admin Ganteng', 'admin1', '177788bb-76ce-40ae-8040-9ee8d189a1ee.jpeg', 'uhuy', '$2a$10$nNO84MT6EaTTQrdenXYPjuN9qfovD.VLCjRrGqyzbLYScN36FLV9G'),
+(1, '926dde59-7de7-493c-aed3-b4573247acf0', 'Admin Ganteng', 'admin1', 'aa643563-3501-415e-8ff3-210210cfc09e.jpeg', 'uhuyx', '$2a$10$nNO84MT6EaTTQrdenXYPjuN9qfovD.VLCjRrGqyzbLYScN36FLV9G'),
 (2, '70d9efda-f354-44cc-bd5f-87d12530dbc7', 'pak agus', 'agus_slamet', 'bf040835-8a35-4854-bf82-aa8b88002248.jpeg', 'menikmati hidup', '$2a$10$vnd9aaZtJi4scvAXOc5Mv.MB5xmT7MSIud9T0Hc9cdAgGNQ1XxkYG'),
 (3, 'd074ee5c-5682-4a73-8777-9c1b25cde638', 'mas cr7 nih bos', 'cr7_official', '9cdb9d55-26df-4ffd-bc80-11c5293a9e5e.jpeg', 'main bola', '$2a$10$wSszcpvEPwCeZ8/bs6BWzuMDl5SMtNm5XWrLasY7B1LydXjEf2H76'),
-(4, 'd4ab5234-5bf3-4ff0-9e84-ba2158d4cf98', 'mas goat', 'messi_goat', '9152012b-7298-4fd7-ba2b-2ec0da0ba72b.jpeg', 'suka dribling', '$2a$10$yXR.Y/sv4G0YjGhaksU4H.smnjGkedV3A3//gWzlno7fbwYwexvAy');
+(4, 'd4ab5234-5bf3-4ff0-9e84-ba2158d4cf98', 'mas goat', 'messi_goat', '9152012b-7298-4fd7-ba2b-2ec0da0ba72b.jpeg', 'suka dribling', '$2a$10$yXR.Y/sv4G0YjGhaksU4H.smnjGkedV3A3//gWzlno7fbwYwexvAy'),
+(5, 'a69b6b17-a7be-4b13-a4f4-d74e35cb7c43', NULL, 'admin2', 'avatar.png', NULL, '$2a$10$brwziZ34GGvCcG2YUWNfGue9umlsTQqeClqGfyKkxeK/pm011S89i');
 
 --
 -- Indexes for dumped tables
@@ -175,25 +178,25 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `follow`
 --
 ALTER TABLE `follow`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
