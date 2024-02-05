@@ -12,7 +12,7 @@ const Home_feed = (props) => {
   }, []);
 
   const get_feed = () => {
-    fetch("/api/feed", {
+    fetch("/api/post/feed", {
       method: "GET",
       cache: "no-store",
     })
