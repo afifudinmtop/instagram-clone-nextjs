@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 05, 2024 at 11:56 AM
+-- Generation Time: Feb 06, 2024 at 05:30 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -42,7 +42,9 @@ CREATE TABLE `comment` (
 
 INSERT INTO `comment` (`id`, `uuid`, `uuid_post`, `uuid_user`, `text`, `ts`) VALUES
 (1, 'a23aa88b-c584-4d46-ae3a-0501cdae2263', '42f14816-4340-403d-b11d-bd1ccc07b6ff', '926dde59-7de7-493c-aed3-b4573247acf0', 'tes komen', '2024-02-05 14:53:53'),
-(2, 'b63c1e5e-dec6-4fc5-9113-345c70511c56', '42f14816-4340-403d-b11d-bd1ccc07b6ff', 'd074ee5c-5682-4a73-8777-9c1b25cde638', 'ok jos', '2024-02-05 15:00:57');
+(2, 'b63c1e5e-dec6-4fc5-9113-345c70511c56', '42f14816-4340-403d-b11d-bd1ccc07b6ff', 'd074ee5c-5682-4a73-8777-9c1b25cde638', 'ok jos', '2024-02-05 15:00:57'),
+(3, '88764352-c709-46f4-a90b-e802a936b68d', 'e5c05e76-7864-4df1-97c2-48fe73d2b812', '926dde59-7de7-493c-aed3-b4573247acf0', 'nice', '2024-02-05 23:46:01'),
+(4, '58ed6347-c8da-41b6-9090-5fcbc5f1632b', '5a297895-d957-4efc-a8fa-46ef15f95e0b', '926dde59-7de7-493c-aed3-b4573247acf0', 'nice', '2024-02-06 01:43:10');
 
 -- --------------------------------------------------------
 
@@ -67,7 +69,10 @@ INSERT INTO `dm` (`id`, `uuid_pesan`, `uuid_pengirim`, `uuid_penerima`, `pesan`,
 (1, 'df66d70f-f0af-480b-af77-e572ae30a6fa', '926dde59-7de7-493c-aed3-b4573247acf0', 'd074ee5c-5682-4a73-8777-9c1b25cde638', 'halo kak', '2024-02-05 16:51:37'),
 (2, '82409669-a6c6-4ca2-b7a5-54473f7b797f', 'd074ee5c-5682-4a73-8777-9c1b25cde638', '926dde59-7de7-493c-aed3-b4573247acf0', 'halo juga', '2024-02-05 17:16:34'),
 (3, '63cbea48-cfa7-45b0-977e-8dd2373b428d', '926dde59-7de7-493c-aed3-b4573247acf0', '70d9efda-f354-44cc-bd5f-87d12530dbc7', 'siang pak agus', '2024-02-05 17:46:08'),
-(4, 'cafa919f-367b-49e4-9305-aafcfef1a6f3', 'd074ee5c-5682-4a73-8777-9c1b25cde638', '926dde59-7de7-493c-aed3-b4573247acf0', 'jos', '2024-02-05 17:55:54');
+(4, 'cafa919f-367b-49e4-9305-aafcfef1a6f3', 'd074ee5c-5682-4a73-8777-9c1b25cde638', '926dde59-7de7-493c-aed3-b4573247acf0', 'jos', '2024-02-05 17:55:54'),
+(5, '7c013f70-2a83-4967-b829-6bf1dd865e08', '926dde59-7de7-493c-aed3-b4573247acf0', 'd074ee5c-5682-4a73-8777-9c1b25cde638', 'selamat malam bang', '2024-02-05 23:48:30'),
+(6, '1726836b-16a2-4557-8be5-495359b99a2f', 'd074ee5c-5682-4a73-8777-9c1b25cde638', '926dde59-7de7-493c-aed3-b4573247acf0', 'oi', '2024-02-05 23:49:33'),
+(7, 'ecb54295-6f39-45bd-ad99-06bd86df0578', '926dde59-7de7-493c-aed3-b4573247acf0', 'd074ee5c-5682-4a73-8777-9c1b25cde638', 'selamat pagi', '2024-02-06 01:43:47');
 
 -- --------------------------------------------------------
 
@@ -86,11 +91,11 @@ CREATE TABLE `follow` (
 --
 
 INSERT INTO `follow` (`id`, `user1`, `user2`) VALUES
-(2, '926dde59-7de7-493c-aed3-b4573247acf0', 'd074ee5c-5682-4a73-8777-9c1b25cde638'),
 (4, 'd074ee5c-5682-4a73-8777-9c1b25cde638', '926dde59-7de7-493c-aed3-b4573247acf0'),
-(7, '926dde59-7de7-493c-aed3-b4573247acf0', '70d9efda-f354-44cc-bd5f-87d12530dbc7'),
 (8, 'd4ab5234-5bf3-4ff0-9e84-ba2158d4cf98', '70d9efda-f354-44cc-bd5f-87d12530dbc7'),
-(9, 'd074ee5c-5682-4a73-8777-9c1b25cde638', '70d9efda-f354-44cc-bd5f-87d12530dbc7');
+(9, 'd074ee5c-5682-4a73-8777-9c1b25cde638', '70d9efda-f354-44cc-bd5f-87d12530dbc7'),
+(10, '926dde59-7de7-493c-aed3-b4573247acf0', '70d9efda-f354-44cc-bd5f-87d12530dbc7'),
+(11, '926dde59-7de7-493c-aed3-b4573247acf0', 'd074ee5c-5682-4a73-8777-9c1b25cde638');
 
 -- --------------------------------------------------------
 
@@ -110,7 +115,9 @@ CREATE TABLE `likes` (
 
 INSERT INTO `likes` (`id`, `post`, `user`) VALUES
 (4, 'a00fbc8c-1d01-422b-8f19-ccda441aca0d', '926dde59-7de7-493c-aed3-b4573247acf0'),
-(5, 'a00fbc8c-1d01-422b-8f19-ccda441aca0d', 'd4ab5234-5bf3-4ff0-9e84-ba2158d4cf98');
+(5, 'a00fbc8c-1d01-422b-8f19-ccda441aca0d', 'd4ab5234-5bf3-4ff0-9e84-ba2158d4cf98'),
+(7, '06c92ffa-2de8-438f-8a00-fc9273adc802', '926dde59-7de7-493c-aed3-b4573247acf0'),
+(9, 'f46f8ebb-f0c1-4c86-b355-f4c639f6f0df', '926dde59-7de7-493c-aed3-b4573247acf0');
 
 -- --------------------------------------------------------
 
@@ -164,7 +171,9 @@ INSERT INTO `post` (`id`, `uuid`, `user`, `gambar`, `caption`, `ts`) VALUES
 (30, 'e76273c9-7cff-422d-ad67-9ee760d975df', 'd4ab5234-5bf3-4ff0-9e84-ba2158d4cf98', 'e76273c9-7cff-422d-ad67-9ee760d975df.jpeg', 'klklkl', '2024-01-27 12:00:11'),
 (31, '3af32c10-9cd8-4546-8fe8-d7c6e81de22c', 'd4ab5234-5bf3-4ff0-9e84-ba2158d4cf98', '3af32c10-9cd8-4546-8fe8-d7c6e81de22c.jpeg', 'yuyiewqq', '2024-01-27 12:00:22'),
 (32, 'b9b0b218-8910-406e-ad64-b85b578e4879', '926dde59-7de7-493c-aed3-b4573247acf0', 'b9b0b218-8910-406e-ad64-b85b578e4879.jpeg', 'tes1', '2024-02-05 11:10:15'),
-(33, 'a25bc53b-bd58-41a9-93a0-43550b099d1c', '926dde59-7de7-493c-aed3-b4573247acf0', 'a25bc53b-bd58-41a9-93a0-43550b099d1c.jpeg', 'tes2', '2024-02-05 11:13:39');
+(33, 'a25bc53b-bd58-41a9-93a0-43550b099d1c', '926dde59-7de7-493c-aed3-b4573247acf0', 'a25bc53b-bd58-41a9-93a0-43550b099d1c.jpeg', 'tes2', '2024-02-05 11:13:39'),
+(34, 'bf64ea0f-3220-41f1-857d-b952c88c782e', '926dde59-7de7-493c-aed3-b4573247acf0', 'bf64ea0f-3220-41f1-857d-b952c88c782e.jpeg', 'uhuy', '2024-02-05 23:49:04'),
+(35, 'eaba3bd8-85f5-427e-904d-dde8815d14a1', '926dde59-7de7-493c-aed3-b4573247acf0', 'eaba3bd8-85f5-427e-904d-dde8815d14a1.jpeg', 'elang', '2024-02-06 01:45:54');
 
 -- --------------------------------------------------------
 
@@ -187,7 +196,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `uuid`, `name`, `username`, `gambar`, `bio`, `password`) VALUES
-(1, '926dde59-7de7-493c-aed3-b4573247acf0', 'Admin Ganteng', 'admin1', 'aa643563-3501-415e-8ff3-210210cfc09e.jpeg', 'uhuyx', '$2a$10$nNO84MT6EaTTQrdenXYPjuN9qfovD.VLCjRrGqyzbLYScN36FLV9G'),
+(1, '926dde59-7de7-493c-aed3-b4573247acf0', 'Admin Ganteng', 'admin1', 'b32b1c16-d93d-4d5f-bf63-edb129ae28a5.jpeg', 'uhuyx', '$2a$10$nNO84MT6EaTTQrdenXYPjuN9qfovD.VLCjRrGqyzbLYScN36FLV9G'),
 (2, '70d9efda-f354-44cc-bd5f-87d12530dbc7', 'pak agus', 'agus_slamet', 'bf040835-8a35-4854-bf82-aa8b88002248.jpeg', 'menikmati hidup', '$2a$10$vnd9aaZtJi4scvAXOc5Mv.MB5xmT7MSIud9T0Hc9cdAgGNQ1XxkYG'),
 (3, 'd074ee5c-5682-4a73-8777-9c1b25cde638', 'mas cr7 nih bos', 'cr7_official', '9cdb9d55-26df-4ffd-bc80-11c5293a9e5e.jpeg', 'main bola', '$2a$10$wSszcpvEPwCeZ8/bs6BWzuMDl5SMtNm5XWrLasY7B1LydXjEf2H76'),
 (4, 'd4ab5234-5bf3-4ff0-9e84-ba2158d4cf98', 'mas goat', 'messi_goat', '9152012b-7298-4fd7-ba2b-2ec0da0ba72b.jpeg', 'suka dribling', '$2a$10$yXR.Y/sv4G0YjGhaksU4H.smnjGkedV3A3//gWzlno7fbwYwexvAy'),
@@ -241,31 +250,31 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `dm`
 --
 ALTER TABLE `dm`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `follow`
 --
 ALTER TABLE `follow`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `user`

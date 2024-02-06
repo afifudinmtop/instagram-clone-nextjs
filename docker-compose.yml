@@ -1,0 +1,35 @@
+version: "3"
+services:
+  mysql:
+    image: mysql:8.2.0
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: instagram
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - 8851:80
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: admin
+      PMA_PASSWORD: admin
+
+  aplikasi:
+    image: node:20.11.0
+    working_dir: /appx
+    volumes:
+      - ./instagram:/appx
+    ports:
+      - "8850:3000"
+    command: sh -c "npm install && npm run dev"
+
+volumes:
+  mysql_data:
